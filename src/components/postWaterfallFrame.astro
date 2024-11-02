@@ -1,14 +1,25 @@
 ---
-import PostCard from "./postCard.astro"
+import PostCard from './postCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
 ---
 
-<div class="h-screen overflow-y-scroll p-2">
-    <div class="space-y-4">
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
+<div class='h-screen overflow-y-scroll p-2'>
+    <div class='space-y-4'>
+        {
+            posts.map((post: any) => (
+                <a>
+                    <PostCard
+                        title={post.data.title}
+                        description={post.data.description}
+                        introText={post.data.introText}
+                        tags={post.data.tags || []}
+                        author={post.data.author}
+                        pubDate={post.data.publishDate}
+                    />
+                </a>
+            ))
+        }
     </div>
 </div>
