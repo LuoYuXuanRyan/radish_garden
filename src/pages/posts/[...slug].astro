@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import Post from '../../layout/post.astro';
+import Prose from '../../components/Prose.astro';
+
+export async function getStaticPaths() {
+    const blogEntries = await getCollection('posts');
+    return blogEntries.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await entry.render();
+---
+
+<Post>
+    <Prose slot='article'>
+        <Content />
+    </Prose>
+    <div slot='headings'>
+        {
+            headings.map(
+                (
+                    heading: { depth: number; slug: string; text: string },
+                    id: number
+                ) => {
+                    let space = ' '.repeat((heading.depth - 1) * 4);
+                    let text = `${id + 1}. ${heading.text}`;
+                    let full_text = `${space}${text}`;
+                    return (
+                        <a
+                            id={heading.slug}
+                            class='whitespace-pre text-profileTextLight 
+                                dark:text-profileTextDark target:text-headingHighlight 
+                                hover:bg-descriptionTextDark dark:hover:bg-descriptionTextLight
+                                rounded-md w-full block font-bold'
+                            href={`#${heading.slug}`}
+                        >
+                            {full_text}
+                        </a>
+                    );
+                }
+            )
+        }
+    </div>
+</Post>

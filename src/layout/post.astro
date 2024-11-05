@@ -3,16 +3,6 @@ import Rss from '../components/icons/rss.astro';
 import Github from '../components/icons/github.astro';
 import Mail from '../components/icons/mail.astro';
 import FirendLinks from '../components/icons/friendLinks.astro';
-import { getCollection } from 'astro:content';
-const posts = await getCollection('posts');
-const totalBlogs = posts.length;
-let tags = new Set();
-posts.map((post) => {
-    post.data.tags.map((tag) => {
-        tags.add(tag);
-    });
-});
-const totalTags = tags.size;
 ---
 
 <html lang='en'>
@@ -59,53 +49,9 @@ const totalTags = tags.size;
                     class='bg-bgLight dark:bg-bgDark flex flex-auto flex-col w-3/12 pl-16'
                 >
                     <div
-                        class='bg-foilLight dark:bg-foilDark flex flex-col items-center mt-2 ml-8 mr-4 rounded-2xl'
+                        class='bg-foilLight dark:bg-foilDark flex flex-col items-center mt-2 ml-8 mr-4 rounded-2xl pt-4 pb-4'
                     >
-                        <img
-                            src='avatar.png'
-                            alt='avatar'
-                            class='rounded-full w-40 h-40 border-2 border-bgDark mt-10 bg-bodyLight hover:animate-spin'
-                        />
-                        <p
-                            class='text-profileTextLight dark:text-profileTextDark text-2xl mt-2 italic'
-                        >
-                            Ryan
-                        </p>
-                        <p
-                            class='text-descriptionTextLight dark:text-descriptionTextDark text-bg italic'
-                        >
-                            A CS enthusiast <span class='not-italic'>🥰</span>
-                        </p>
-                        <div
-                            class='flex flex-row w-full justify-center mt-4 mb-4 text-2xl text-profileTextLight dark:text-profileTextDark'
-                        >
-                            <div class='flex flex-col items-center mr-14'>
-                                <p>Blogs:</p>
-                                <p>{totalBlogs}</p>
-                            </div>
-                            <div class='flex flex-col items-center'>
-                                <p>Tags:</p>
-                                <p>{totalTags}</p>
-                            </div>
-                        </div>
-                        <div
-                            class='flex flex-row w-full mb-4 justify-center text-bg text-profileTextLight dark:text-profileTextDark'
-                        >
-                            <a
-                                href=''
-                                class='inline-flex w-2/5 mr-1 justify-center hover:bg-bgLight dark:hover:bg-bgDark rounded-md'
-                            >
-                                <Github class='h-6 w-4 mr-1' />
-                                GitHub
-                            </a>
-                            <a
-                                href=''
-                                class='inline-flex w-2/5 justify-center hover:bg-bgLight dark:hover:bg-bgDark rounded-md'
-                            >
-                                <Mail class='h-6 w-4 mr-1' />
-                                Mail
-                            </a>
-                        </div>
+                        <slot name='headings' />
                     </div>
                     <div
                         class='bg-foilLight dark:bg-foilDark flex flex-col items-center mt-2 ml-8 mr-4 rounded-2xl min-h-28'
@@ -120,8 +66,10 @@ const totalTags = tags.size;
                         </div>
                     </div>
                 </div>
-                <div class='flex-auto w-8/12 ml-0.5 mr-0.5'>
-                    <slot />
+                <div
+                    class='flex-auto w-8/12 ml-0.5 mr-0.5 h-screen overflow-scroll p-10'
+                >
+                    <slot name='article' />
                 </div>
                 <div class='bg-bgLight dark:bg-bgDark flex-auto w-2/12'>
                     <div class='flex justify-center'>
