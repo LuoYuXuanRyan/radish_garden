@@ -1,19 +1,21 @@
 ---
-import Mainpage from "../layout/mainpage.astro"
-import PostWaterfallFrame from "../components/postWaterfallFrame.astro"
+import Mainpage from '../layout/mainpage.astro';
+import PostWaterfallFrame from '../components/postWaterfallFrame.astro';
+import Navigation from '../layout/navigation.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Radish Garden</title>
-	</head>
-	<body>
-		<Mainpage>
-			<PostWaterfallFrame />
-		</Mainpage>
-	</body>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8' />
+        <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+        <meta name='viewport' content='width=device-width' />
+        <meta name='generator' content={Astro.generator} />
+        <title>Radish Garden</title>
+    </head>
+    <body>
+        <Mainpage>
+            <Navigation slot='header' />
+            <PostWaterfallFrame slot='main' />
+        </Mainpage>
+    </body>
 </html>

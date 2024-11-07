@@ -16,33 +16,7 @@ import FirendLinks from '../components/icons/friendLinks.astro';
     <body
         class='bg-bodyLight dark:bg-bodyDark h-screen flex flex-col font-serif'
     >
-        <header class='mb-0.5'>
-            <div
-                class='bg-bgLight dark:bg-bgDark h-16 pl-6 pr-6 flex justify-between items-center'
-            >
-                <div class='flex'>
-                    <a
-                        href='/'
-                        class='text-fontLight dark:text-fontDark text-5xl font-serif italic'
-                    >
-                        Radish Garden
-                    </a>
-                    <Rss
-                        class='text-fontLight dark:text-fontDark h-8 w-8 ml-2 mr-20'
-                    />
-                </div>
-                <nav class='text-fontLight dark:text-fontDark text-xl'>
-                    <ul class='flex'>
-                        <li class='inline-flex flex-initial p-2 mr-2'>
-                            <a href='/'>Blogs</a>
-                        </li>
-                        <li class='inline-flex flex-initial p-2'>
-                            <a href='/about'>About</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+        <slot name='header' />
         <main class='flex flex-1'>
             <div class='flex flex-1'>
                 <div
@@ -67,7 +41,7 @@ import FirendLinks from '../components/icons/friendLinks.astro';
                     </div>
                 </div>
                 <div
-                    class='flex-auto w-8/12 ml-0.5 mr-0.5 h-screen overflow-scroll p-10'
+                    class='flex-auto w-8/12 ml-0.5 mr-0.5 h-screen overflow-scroll p-10 pb-24'
                 >
                     <slot name='article' />
                 </div>

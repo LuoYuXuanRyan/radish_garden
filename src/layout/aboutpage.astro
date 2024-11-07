@@ -1,0 +1,34 @@
+---
+import Rss from '../components/icons/rss.astro';
+import Github from '../components/icons/github.astro';
+import Mail from '../components/icons/mail.astro';
+import FirendLinks from '../components/icons/friendLinks.astro';
+import { getCollection } from 'astro:content';
+const posts = await getCollection('posts');
+const totalBlogs = posts.length;
+let tags = new Set();
+posts.map((post) => {
+    post.data.tags.map((tag) => {
+        tags.add(tag);
+    });
+});
+const totalTags = tags.size;
+---
+
+<html lang='en'>
+    <head>
+        <meta charset='utf-8' />
+        <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+        <meta name='viewport' content='width=device-width' />
+        <meta name='generator' content={Astro.generator} />
+        <title>Radish Garden</title>
+    </head>
+    <body
+        class='bg-bodyLight dark:bg-bodyDark h-screen flex flex-col font-serif'
+    >
+        <slot name="header" />
+        <main class='flex flex-1'>
+
+        </main>
+    </body>
+</html>

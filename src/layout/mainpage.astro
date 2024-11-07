@@ -5,7 +5,7 @@ import Mail from '../components/icons/mail.astro';
 import FirendLinks from '../components/icons/friendLinks.astro';
 import { getCollection } from 'astro:content';
 const posts = await getCollection('posts');
-const totalBlogs = posts.length;
+const totalPosts = posts.length;
 let tags = new Set();
 posts.map((post) => {
     post.data.tags.map((tag) => {
@@ -26,33 +26,7 @@ const totalTags = tags.size;
     <body
         class='bg-bodyLight dark:bg-bodyDark h-screen flex flex-col font-serif'
     >
-        <header class='mb-0.5'>
-            <div
-                class='bg-bgLight dark:bg-bgDark h-16 pl-6 pr-6 flex justify-between items-center'
-            >
-                <div class='flex'>
-                    <a
-                        href='/'
-                        class='text-fontLight dark:text-fontDark text-5xl font-serif italic'
-                    >
-                        Radish Garden
-                    </a>
-                    <Rss
-                        class='text-fontLight dark:text-fontDark h-8 w-8 ml-2 mr-20'
-                    />
-                </div>
-                <nav class='text-fontLight dark:text-fontDark text-xl'>
-                    <ul class='flex'>
-                        <li class='inline-flex flex-initial p-2 mr-2'>
-                            <a href='/'>Blogs</a>
-                        </li>
-                        <li class='inline-flex flex-initial p-2'>
-                            <a href='/about'>About</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+        <slot name='header' />
         <main class='flex flex-1'>
             <div class='flex flex-1'>
                 <div
@@ -80,8 +54,8 @@ const totalTags = tags.size;
                             class='flex flex-row w-full justify-center mt-4 mb-4 text-2xl text-profileTextLight dark:text-profileTextDark'
                         >
                             <div class='flex flex-col items-center mr-14'>
-                                <p>Blogs:</p>
-                                <p>{totalBlogs}</p>
+                                <p>Posts:</p>
+                                <p>{totalPosts}</p>
                             </div>
                             <div class='flex flex-col items-center'>
                                 <p>Tags:</p>
@@ -121,7 +95,7 @@ const totalTags = tags.size;
                     </div>
                 </div>
                 <div class='flex-auto w-8/12 ml-0.5 mr-0.5'>
-                    <slot />
+                    <slot name="main" />
                 </div>
                 <div class='bg-bgLight dark:bg-bgDark flex-auto w-2/12'>
                     <div class='flex justify-center'>

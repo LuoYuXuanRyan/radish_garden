@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Post from '../../layout/post.astro';
 import Prose from '../../components/Prose.astro';
+import Navigation from '../../layout/navigation.astro';
 
 export async function getStaticPaths() {
     const blogEntries = await getCollection('posts');
@@ -16,6 +17,7 @@ const { Content, headings } = await entry.render();
 ---
 
 <Post>
+    <Navigation slot='header' />
     <Prose slot='article'>
         <Content />
     </Prose>
@@ -34,7 +36,7 @@ const { Content, headings } = await entry.render();
                             id={heading.slug}
                             class='whitespace-pre text-profileTextLight 
                                 dark:text-profileTextDark target:text-headingHighlight 
-                                hover:bg-descriptionTextDark dark:hover:bg-descriptionTextLight
+                                hover:bg-bgLight dark:hover:bg-bgDark
                                 rounded-md w-full block font-bold'
                             href={`#${heading.slug}`}
                         >

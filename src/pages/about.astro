@@ -1,5 +1,6 @@
 ---
-
+import Aboutpage from '../layout/aboutpage.astro'
+import Navigation from '../layout/navigation.astro'
 ---
 
 <html lang="en">
@@ -11,7 +12,8 @@
 		<title>Radish Garden</title>
 	</head>
 	<body>
-		<h1>This is the about page</h1>
-        <p>I'm learning astro</p>
+		<Aboutpage>
+			<Navigation slot="header" />
+		</Aboutpage>
 	</body>
 </html>
