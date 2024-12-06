@@ -8,7 +8,7 @@ const posts = await getCollection('posts');
 <div class='h-screen overflow-y-scroll p-2'>
     {
         posts.map((post) => (
-            <a href={'/posts/' + post.slug}>
+            <a href={'/posts/' + post.id}>
                 <PostCard
                     title={post.data.title}
                     description={post.data.description}
