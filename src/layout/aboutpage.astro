@@ -1,8 +1,6 @@
 ---
-import Rss from '../components/icons/rss.astro';
-import Github from '../components/icons/github.astro';
-import Mail from '../components/icons/mail.astro';
-import FirendLinks from '../components/icons/friendLinks.astro';
+import { Image } from 'astro:assets';
+import Avatar from '../assets/avatar.png';
 import { getCollection } from 'astro:content';
 const posts = await getCollection('posts');
 const totalBlogs = posts.length;
@@ -26,9 +24,38 @@ const totalTags = tags.size;
     <body
         class='bg-bodyLight dark:bg-bodyDark h-screen flex flex-col font-serif'
     >
-        <slot name="header" />
-        <main class='flex flex-1 w-full h-full justify-center items-center'>
-            <span class="text-9xl text-fontLight dark:text-fontDark">Under Construction</span>
+        <slot name='header' />
+        <main class='flex w-full h-full justify-center items-center'>
+            <div class='flex flex-row w-3/4 border-2 p-4'>
+                <div class='flex items-center'>
+                    <Image
+                        src={Avatar}
+                        alt='avatar'
+                        width={180}
+                        height={180}
+                        class='border-2 bg-bgLight shrink-0'
+                    />
+                </div>
+                <div class='flex flex-col items-start ml-4 italic w-3/4'>
+                    <p class='text-3xl text-profileTextLight dark:text-profileTextDark'>
+                        Ryan
+                        <span class='text-xl ml-6 text-descriptionTextLight dark:text-descriptionTextDark dark:opacity-80'>
+                            ---- A CS enthusiast <span class="not-italic">🥰</span>
+                        </span>
+                    </p>
+                    <p class='text-lg ml-4 indent-8 text-fontLight dark:text-fontDark'>
+                        I'm a student at Nanjing University of Posts and
+                        Telecommunications (NJUPT), where I'm studying Computer
+                        Science and Technology. I'm really interested in all
+                        things computer-related, and I've set up this blog to
+                        share my knowledge and insights on learning computer
+                        technology. I've also included some of my notes and
+                        resources on GitHub if you'd like to learn more about
+                        me. If you have any questions, please feel free to
+                        contact me via Email.
+                    </p>
+                </div>
+            </div>
         </main>
     </body>
 </html>

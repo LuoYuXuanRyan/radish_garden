@@ -1,5 +1,6 @@
 ---
-import Rss from '../components/icons/rss.astro';
+import { Image } from 'astro:assets';
+import Avatar from '../assets/avatar.png'
 import Github from '../components/icons/github.astro';
 import Mail from '../components/icons/mail.astro';
 import FirendLinks from '../components/icons/friendLinks.astro';
@@ -35,10 +36,13 @@ const totalTags = tags.size;
                     <div
                         class='bg-foilLight dark:bg-foilDark flex flex-col items-center mt-2 ml-8 mr-4 rounded-2xl'
                     >
-                        <img
-                            src='avatar.png'
+                        <Image
+                            src={Avatar}
+                            width={160}
+                            height={160}
                             alt='avatar'
-                            class='rounded-full w-40 h-40 border-2 border-bgDark mt-10 bg-bodyLight hover:animate-spin'
+                            quality='max'
+                            class='rounded-full mt-2 bg-bgLight border-2 hover:animate-spin'
                         />
                         <p
                             class='text-profileTextLight dark:text-profileTextDark text-2xl mt-2 italic'
