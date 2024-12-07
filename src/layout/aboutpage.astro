@@ -1,16 +1,11 @@
 ---
 import { Image } from 'astro:assets';
 import Avatar from '../assets/avatar.png';
-import { getCollection } from 'astro:content';
-const posts = await getCollection('posts');
-const totalBlogs = posts.length;
-let tags = new Set();
-posts.map((post) => {
-    post.data.tags.map((tag) => {
-        tags.add(tag);
-    });
-});
-const totalTags = tags.size;
+import { getEntry, render } from 'astro:content';
+import Prose from '../components/Prose.astro';
+
+const entry = await getEntry('about', 'aboutme');
+const { Content, headings } = await render(entry);
 ---
 
 <html lang='en'>
@@ -22,38 +17,61 @@ const totalTags = tags.size;
         <title>Radish Garden</title>
     </head>
     <body
-        class='bg-bodyLight dark:bg-bodyDark h-screen flex flex-col font-serif'
+        class='bg-bodyLight dark:bg-bodyDark flex flex-col font-serif overflow-hidden'
+        style='height: calc(100vh - 4rem)'
     >
         <slot name='header' />
-        <main class='flex w-full h-full justify-center items-center'>
-            <div class='flex flex-row w-3/4 border-2 p-4'>
-                <div class='flex items-center'>
-                    <Image
-                        src={Avatar}
-                        alt='avatar'
-                        width={180}
-                        height={180}
-                        class='border-2 bg-bgLight shrink-0'
-                    />
+        <main class='flex flex-col w-full h-full items-center'>
+            <div
+                class='flex flex-col w-3/4
+                border-2 border-bgDark
+                shadow-2xl shadow-bgDark dark:shadow-fontDark
+                p-4 pt-8 pb-20 mt-2 mb-2 overflow-scroll'
+            >
+                <div class='flex flex-row justify-around'>
+                    <div class='flex items-center'>
+                        <Image
+                            src={Avatar}
+                            alt='avatar'
+                            width={180}
+                            height={180}
+                            class='border-2 bg-bgLight shrink-0'
+                        />
+                    </div>
+                    <div class='flex flex-col items-start italic w-3/4'>
+                        <p
+                            class='text-3xl text-profileTextLight dark:text-profileTextDark'
+                        >
+                            Ryan
+                            <span
+                                class='text-xl ml-6 text-descriptionTextLight dark:text-descriptionTextDark dark:opacity-80'
+                            >
+                                ---- A CS enthusiast <span class='not-italic'
+                                    >🥰</span
+                                >
+                            </span>
+                        </p>
+                        <p
+                            class='text-lg ml-4 indent-8 text-fontLight dark:text-fontDark'
+                        >
+                            I'm a student at Nanjing University of Posts and
+                            Telecommunications (NJUPT), where I'm studying
+                            Computer Science and Technology. I'm really
+                            interested in all things computer-related, and I've
+                            set up this blog to share my knowledge and insights
+                            on learning computer technology. I've also included
+                            some of my notes and resources on GitHub if you'd
+                            like to learn more about me. If you have any
+                            questions, please feel free to contact me via Email.
+                        </p>
+                    </div>
                 </div>
-                <div class='flex flex-col items-start ml-4 italic w-3/4'>
-                    <p class='text-3xl text-profileTextLight dark:text-profileTextDark'>
-                        Ryan
-                        <span class='text-xl ml-6 text-descriptionTextLight dark:text-descriptionTextDark dark:opacity-80'>
-                            ---- A CS enthusiast <span class="not-italic">🥰</span>
-                        </span>
-                    </p>
-                    <p class='text-lg ml-4 indent-8 text-fontLight dark:text-fontDark'>
-                        I'm a student at Nanjing University of Posts and
-                        Telecommunications (NJUPT), where I'm studying Computer
-                        Science and Technology. I'm really interested in all
-                        things computer-related, and I've set up this blog to
-                        share my knowledge and insights on learning computer
-                        technology. I've also included some of my notes and
-                        resources on GitHub if you'd like to learn more about
-                        me. If you have any questions, please feel free to
-                        contact me via Email.
-                    </p>
+                <div
+                    class='flex justify-center text-lg font-serif text-fontLight dark:text-fontDark mt-10'
+                >
+                    <div class='w-11/12 indent-8'>
+                        <Content />
+                    </div>
                 </div>
             </div>
         </main>

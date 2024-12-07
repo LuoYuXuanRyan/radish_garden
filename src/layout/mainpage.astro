@@ -25,7 +25,8 @@ const totalTags = tags.size;
         <title>Radish Garden</title>
     </head>
     <body
-        class='bg-bodyLight dark:bg-bodyDark h-screen flex flex-col font-serif'
+        class='bg-bodyLight dark:bg-bodyDark flex flex-col font-serif overflow-hidden'
+        style="height: calc(100vh - 4rem)"
     >
         <slot name='header' />
         <main class='flex flex-1'>
