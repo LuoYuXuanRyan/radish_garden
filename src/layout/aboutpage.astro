@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import Avatar from '../assets/avatar.png';
 import { getEntry, render } from 'astro:content';
-import Prose from '../components/Prose.astro';
 
 const entry = await getEntry('about', 'aboutme');
 const { Content, headings } = await render(entry);
