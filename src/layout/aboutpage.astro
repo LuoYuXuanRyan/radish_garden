@@ -1,6 +1,4 @@
 ---
-import { Image } from 'astro:assets';
-import Avatar from '../assets/avatar.png';
 import { getEntry, render } from 'astro:content';
 
 const entry = await getEntry('about', 'aboutme');
@@ -22,22 +20,21 @@ const { Content, headings } = await render(entry!);
         <slot name='header' />
         <main class='flex flex-col w-full h-full items-center'>
             <div
-                class='flex flex-col w-3/4
+                class='flex flex-col w-11/12 md:w-3/4
                 border-2 border-bgDark
                 shadow-2xl shadow-bgDark dark:shadow-fontDark
                 p-4 pt-8 pb-20 mt-2 mb-2 overflow-scroll'
             >
-                <div class='flex flex-row justify-around'>
-                    <div class='flex items-center'>
-                        <Image
-                            src={Avatar}
+                <div class='flex flex-col md:flex-row md:justify-around items-center'>
+                    <div class='flex md:items-center justify-center'>
+                        <img
+                            src='avatar.png'
                             alt='avatar'
-                            width={180}
-                            height={180}
-                            class='border-2 bg-bgLight shrink-0'
+                            class='border-2 bg-bgLight shrink-0 
+                            md:h-48 md:w-48'
                         />
                     </div>
-                    <div class='flex flex-col items-start italic w-3/4'>
+                    <div class='flex flex-col items-center md:items-start italic w-11/12 md:w-3/4'>
                         <p
                             class='text-3xl text-profileTextLight dark:text-profileTextDark'
                         >
@@ -51,28 +48,37 @@ const { Content, headings } = await render(entry!);
                             </span>
                         </p>
                         <p
-                            class='text-lg ml-4 indent-8 text-fontLight dark:text-fontDark tracking-wider'
+                            class='text-lg md:ml-4 indent-8 text-fontLight dark:text-fontDark 
+                            tracking-wider text-justify'
                         >
                             I'm a student at Nanjing University of Posts and
-                            Telecommunications (<a href="https://www.njupt.edu.cn" class="underline">NJUPT</a>), where I'm studying
-                            Computer Science and Technology. I'm really
-                            interested in all things computer-related, and I've
-                            set up this blog to share my knowledge and insights
-                            on learning computer technology. I've also included
-                            some of my notes and resources on 
-                            <a href="https://github.com/LuoYuXuanRyan" class="underline">GitHub</a> if you'd
-                            like to learn more about me. If you have any
-                            questions, please feel free to contact me via 
-                            <a href="mailto:1505172926@qq.com?subject=From%20Astro%20Blog%20"
-                            class="underline">
-                                Email</a> .
+                            Telecommunications (<a
+                                href='https://www.njupt.edu.cn'
+                                class='underline'>NJUPT</a
+                            >), where I'm studying Computer Science and
+                            Technology. I'm really interested in all things
+                            computer-related, and I've set up this blog to share
+                            my knowledge and insights on learning computer
+                            technology. I've also included some of my notes and
+                            resources on
+                            <a
+                                href='https://github.com/LuoYuXuanRyan'
+                                class='underline'>GitHub</a
+                            > if you'd like to learn more about me. If you have any
+                            questions, please feel free to contact me via
+                            <a
+                                href='mailto:1505172926@qq.com?subject=From%20Astro%20Blog%20'
+                                class='underline'
+                            >
+                                Email</a
+                            > .
                         </p>
                     </div>
                 </div>
                 <div
                     class='flex justify-center text-lg font-serif text-fontLight dark:text-fontDark mt-10'
                 >
-                    <div class='w-11/12 indent-8 leading-8 tracking-wider'>
+                    <div class='w-11/12 indent-8 leading-8 tracking-wider text-justify'>
                         <Content />
                     </div>
                 </div>

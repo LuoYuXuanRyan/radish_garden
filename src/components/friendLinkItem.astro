@@ -1,0 +1,13 @@
+---
+const { blogName, link } = Astro.props;
+---
+
+<a
+    href={link}
+    class='flex justify-center
+    text-profileTextLight dark:text-profileTextDark
+    hover:bg-bgLight dark:hover:bg-bgDark
+    rounded-md w-full font-bold italic'
+>
+    <p>{blogName}</p>
+</a>
