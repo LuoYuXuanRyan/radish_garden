@@ -3,9 +3,10 @@ import PostCard from './postCard.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('posts');
+posts.sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime());
 ---
 
-<div class='h-screen overflow-y-scroll p-2'>
+<div class='h-screen overflow-y-scroll p-2 pb-24'>
     {
         posts.map((post) => (
             <a href={'/posts/' + post.id}>

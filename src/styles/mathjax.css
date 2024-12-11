@@ -1,0 +1,6 @@
+.MathJax {
+    max-width: 80vw;
+    display: inline-block;
+    overflow: auto;
+    font-size: 1.5rem;
+}

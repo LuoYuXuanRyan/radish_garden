@@ -8,7 +8,7 @@ const { title, tags, description, introText, author, pubDate } = Astro.props;
     bg-bgLight dark:bg-bgDark text-fontLight dark:text-fontDark'
 >
     <div class='flex flex-row justify-between'>
-        <h1 class='text-2xl'>{title}</h1>
+        <h1 class='text-2xl font-bold'>{title}</h1>
         <div class='flex gap-2'>
             {
                 tags.map((tag: string) => (
@@ -21,7 +21,7 @@ const { title, tags, description, introText, author, pubDate } = Astro.props;
     </div>
 
     <p class='italic text-descriptionTextLight'>---- {description}</p>
-    <p class='m-4'>{introText}</p>
+    <p class='m-4 leading-8 tracking-wider indent-8'>{introText}</p>
     <div
         class='flex justify-between text-sm text-fontLight dark:text-fontDark mt-auto'
     >

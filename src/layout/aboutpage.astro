@@ -51,24 +51,28 @@ const { Content, headings } = await render(entry!);
                             </span>
                         </p>
                         <p
-                            class='text-lg ml-4 indent-8 text-fontLight dark:text-fontDark'
+                            class='text-lg ml-4 indent-8 text-fontLight dark:text-fontDark tracking-wider'
                         >
                             I'm a student at Nanjing University of Posts and
-                            Telecommunications (NJUPT), where I'm studying
+                            Telecommunications (<a href="https://www.njupt.edu.cn" class="underline">NJUPT</a>), where I'm studying
                             Computer Science and Technology. I'm really
                             interested in all things computer-related, and I've
                             set up this blog to share my knowledge and insights
                             on learning computer technology. I've also included
-                            some of my notes and resources on GitHub if you'd
+                            some of my notes and resources on 
+                            <a href="https://github.com/LuoYuXuanRyan" class="underline">GitHub</a> if you'd
                             like to learn more about me. If you have any
-                            questions, please feel free to contact me via Email.
+                            questions, please feel free to contact me via 
+                            <a href="mailto:1505172926@qq.com?subject=From%20Astro%20Blog%20"
+                            class="underline">
+                                Email</a> .
                         </p>
                     </div>
                 </div>
                 <div
                     class='flex justify-center text-lg font-serif text-fontLight dark:text-fontDark mt-10'
                 >
-                    <div class='w-11/12 indent-8'>
+                    <div class='w-11/12 indent-8 leading-8 tracking-wider'>
                         <Content />
                     </div>
                 </div>
