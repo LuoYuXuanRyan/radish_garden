@@ -1,8 +1,9 @@
 ---
 import Github from '../components/icons/github.astro';
 import Mail from '../components/icons/mail.astro';
-import FirendLinks from '../components/icons/friendLinks.astro';
-import FriendLinkItem from '../components/friendLinkItem.astro';
+// import FirendLinks from '../components/icons/friendLinks.astro';
+// import FriendLinkItem from '../components/friendLinkItem.astro';
+import FriendLink from '../components/friendLink.astro';
 import { getCollection } from 'astro:content';
 const posts = await getCollection('posts');
 const totalPosts = posts.length;
@@ -87,7 +88,7 @@ const totalTags = tags.size;
                         </a>
                     </div>
                 </div>
-                <div
+                <!-- <div
                     class='bg-foilLight dark:bg-foilDark flex flex-col items-center
                     text-bg text-profileTextLight dark:text-profileTextDark
                     md:mt-2 md:ml-8 md:mr-4
@@ -100,7 +101,8 @@ const totalTags = tags.size;
                         Friend Links
                     </div>
                     <FriendLinkItem blogName="BlockLune's Blog" link="https://blocklune.cc" />
-                </div>
+                </div> -->
+                <FriendLink />
             </div>
             <div
                 class='flex-auto md:w-8/12

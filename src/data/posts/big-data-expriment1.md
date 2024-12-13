@@ -6,7 +6,6 @@ introText: '本文记录了大数据挖掘课程中实验1的步骤和遇到的�
 author: 'Ryan'
 tags: ['linux', 'hadoop']
 slug: 'big-data-experiment1'
-
 ---
 
 # 实验1：熟悉常用的Linux操作和Hadoop操作

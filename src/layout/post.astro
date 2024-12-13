@@ -1,5 +1,5 @@
 ---
-import FirendLinks from '../components/icons/friendLinks.astro';
+import FriendLink from '../components/friendLink.astro';
 import '../styles/mathjax.css';
 ---
 
@@ -25,18 +25,7 @@ import '../styles/mathjax.css';
                 >
                     <slot name='headings' />
                 </div>
-                <div
-                    class='bg-foilLight dark:bg-foilDark flex flex-col items-center mt-2 ml-8 mr-4 rounded-2xl min-h-28'
-                >
-                    <div
-                        class='flex flex-col items-center text-bg text-profileTextLight dark:text-profileTextDark'
-                    >
-                        <div class='flex flex-row mt-2'>
-                            <FirendLinks class='h-6 w-4 mr-1' />
-                            Friend Links
-                        </div>
-                    </div>
-                </div>
+                <FriendLink />
             </div>
             <div
                 class='flex-auto w-8/12 ml-0.5 mr-0.5 overflow-scroll p-10 pb-24'
