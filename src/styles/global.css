@@ -1,0 +1,11 @@
+@font-face {
+    font-family: '仓耳今楷';
+    src: url('./fonts/仓耳今楷05-W03.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body, html {
+    font-family: Georgia, "Times New Roman", Times, '仓耳今楷';
+}

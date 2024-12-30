@@ -1,6 +1,7 @@
 ---
 import FriendLink from '../components/friendLink.astro';
 import '../styles/mathjax.css';
+import '../styles/global.css';
 ---
 
 <html lang='en'>
@@ -12,7 +13,7 @@ import '../styles/mathjax.css';
         <title>Radish Garden</title>
     </head>
     <body
-        class='bg-bodyLight dark:bg-bodyDark flex flex-col font-serif overflow-hidden'
+        class='bg-bodyLight dark:bg-bodyDark flex flex-col overflow-hidden'
         style='height: calc(100vh - 4rem)'
     >
         <slot name='header' />
