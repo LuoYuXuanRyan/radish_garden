@@ -1,9 +1,9 @@
 ---
 import Github from '../components/icons/github.astro';
 import Mail from '../components/icons/mail.astro';
-// import FirendLinks from '../components/icons/friendLinks.astro';
-// import FriendLinkItem from '../components/friendLinkItem.astro';
 import FriendLink from '../components/friendLink.astro';
+import Post from '../components/icons/post.astro';
+import Tag from '../components/icons/tag.astro';
 import { getCollection } from 'astro:content';
 const posts = await getCollection('posts');
 const totalPosts = posts.length;
@@ -47,6 +47,7 @@ const totalTags = tags.size;
                         md:h-40 md:w-40
                         h-44 w-44'
                     />
+
                     <p
                         class='text-profileTextLight dark:text-profileTextDark text-2xl mt-2 italic'
                     >
@@ -61,12 +62,12 @@ const totalTags = tags.size;
                         class='flex flex-row w-full justify-around mt-4 mb-4 text-2xl text-profileTextLight dark:text-profileTextDark'
                     >
                         <div class='flex flex-col items-center'>
-                            <p>Posts:</p>
-                            <p>{totalPosts}</p>
+                            <div><Post class='w-9 h-9' /></div>
+                            <p class='text-3xl'>{totalPosts}</p>
                         </div>
                         <div class='flex flex-col items-center'>
-                            <p>Tags:</p>
-                            <p>{totalTags}</p>
+                            <div><Tag class='w-9 h-9' /></div>
+                            <p class='text-3xl'>{totalTags}</p>
                         </div>
                     </div>
                     <div
@@ -88,20 +89,6 @@ const totalTags = tags.size;
                         </a>
                     </div>
                 </div>
-                <!-- <div
-                    class='bg-foilLight dark:bg-foilDark flex flex-col items-center
-                    text-bg text-profileTextLight dark:text-profileTextDark
-                    md:mt-2 md:ml-8 md:mr-4
-                    m-4
-                    rounded-2xl
-                    p-4 pt-0'
-                >
-                    <div class='flex flex-row mt-2'>
-                        <FirendLinks class='h-6 w-4 mr-1' />
-                        Friend Links
-                    </div>
-                    <FriendLinkItem blogName="BlockLune's Blog" link="https://blocklune.cc" />
-                </div> -->
                 <FriendLink />
             </div>
             <div
