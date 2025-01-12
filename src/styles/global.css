@@ -2,7 +2,7 @@
 @font-face {
     font-family: 'David Libre';
     font-style: normal;
-    font-display: swap;
+    font-display: fallback;
     font-weight: 400;
     src: url(https://cdn.jsdelivr.net/fontsource/fonts/david-libre@latest/latin-400-normal.woff2) format('woff2'), 
          url(https://cdn.jsdelivr.net/fontsource/fonts/david-libre@latest/latin-400-normal.woff) format('woff');
@@ -12,7 +12,7 @@
 @font-face {
     font-family: '仓耳今楷';
     font-style: normal;
-    font-display: swap;
+    font-display: fallback;
     font-weight: 200 900;
     src: url("./fonts/仓耳今楷05-w03.woff2")
         format('woff2');

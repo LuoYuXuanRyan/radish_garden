@@ -1,4 +1,5 @@
 ---
+import * as motion from 'motion/react-client';
 import FriendLink from '../components/friendLink.astro';
 import '../styles/mathjax.css';
 import '../styles/global.css';
@@ -21,18 +22,36 @@ import '../styles/global.css';
             <div
                 class='bg-bgLight dark:bg-bgDark hidden md:flex flex-auto flex-col w-3/12 pl-16'
             >
-                <div
-                    class='bg-foilLight dark:bg-foilDark flex flex-col items-center mt-2 ml-8 mr-4 rounded-2xl pt-4 pb-4'
+                <motion.div
+                    client:load
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                        duration: 0.4,
+                    }}
                 >
-                    <slot name='headings' />
-                </div>
-                <FriendLink />
+                    <div
+                        class='bg-foilLight dark:bg-foilDark flex flex-col items-center mt-2 ml-8 mr-4 rounded-2xl pt-4 pb-4'
+                    >
+                        <slot name='headings' />
+                    </div>
+                    <FriendLink />
+                </motion.div>
             </div>
             <div
                 class='flex-auto w-8/12 ml-0.5 mr-0.5 overflow-scroll p-10 pb-24'
                 style='height: calc(100vh - 4rem)'
             >
-                <slot name='article' />
+                <motion.div
+                    client:load
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                        duration: 0.4,
+                    }}
+                >
+                    <slot name='article' />
+                </motion.div>
             </div>
             <div
                 class='bg-bgLight dark:bg-bgDark hidden md:flex flex-auto w-2/12 justify-center'

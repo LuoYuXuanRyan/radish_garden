@@ -4,12 +4,13 @@ import Mail from '../components/icons/mail.astro';
 import FriendLink from '../components/friendLink.astro';
 import Post from '../components/icons/post.astro';
 import Tag from '../components/icons/tag.astro';
+import * as motion from 'motion/react-client';
 import { getCollection } from 'astro:content';
 const posts = await getCollection('posts');
 const totalPosts = posts.length;
 let tags = new Set();
-posts.map((post) => {
-    post.data.tags.map((tag) => {
+posts.map((post: any) => {
+    post.data.tags.map((tag: string) => {
         tags.add(tag);
     });
 });
@@ -34,63 +35,80 @@ const totalTags = tags.size;
             <div
                 class='md:bg-bgLight md:dark:bg-bgDark flex flex-auto flex-col md:w-3/12 md:pl-16'
             >
-                <div
-                    class='bg-foilLight dark:bg-foilDark flex flex-col items-center
-                    md:mt-2 md:ml-8 md:mr-4
-                    mt-4 ml-4 mr-4
-                    rounded-2xl'
+                <motion.div
+                    client:load
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                        duration: 0.4,
+                    }}
                 >
-                    <img
-                        src='avatar.png'
-                        alt='avatar'
-                        class='rounded-full mt-2 bg-bgLight border-2 hover:animate-spin
-                        md:h-40 md:w-40
-                        h-44 w-44'
-                    />
-
-                    <p
-                        class='text-profileTextLight dark:text-profileTextDark text-2xl mt-2 italic'
-                    >
-                        Ryan
-                    </p>
-                    <p
-                        class='text-descriptionTextLight dark:text-descriptionTextDark text-bg italic'
-                    >
-                        ---- A CS enthusiast <span class='not-italic'>🥰</span>
-                    </p>
                     <div
-                        class='flex flex-row w-full justify-around mt-4 mb-4 text-2xl text-profileTextLight dark:text-profileTextDark'
+                        class='bg-foilLight dark:bg-foilDark flex flex-col items-center
+                                md:mt-2 md:ml-8 md:mr-4
+                                mt-4 ml-4 mr-4
+                                rounded-2xl'
                     >
-                        <div class='flex flex-col items-center'>
-                            <div><Post class='w-9 h-9' /></div>
-                            <p class='text-3xl'>{totalPosts}</p>
+                        <motion.div
+                            client:load
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.8 }}
+                        >
+                            <img
+                                src='/avatar.webp'
+                                alt='avatar'
+                                class='rounded-full mt-2 bg-bgLight
+                                        md:h-36 md:w-36
+                                        h-44 w-44'
+                            />
+                        </motion.div>
+                        <p
+                            class='text-profileTextLight dark:text-profileTextDark text-2xl mt-2 italic'
+                        >
+                            Ryan
+                        </p>
+                        <p
+                            class='text-descriptionTextLight dark:text-descriptionTextDark text-bg italic'
+                        >
+                            ---- A CS enthusiast <span class='not-italic'
+                                >🥰</span
+                            >
+                        </p>
+                        <div
+                            class='flex flex-row w-full justify-around mt-4 mb-4 text-2xl text-profileTextLight dark:text-profileTextDark'
+                        >
+                            <div class='flex flex-col items-center'>
+                                <div><Post class='w-9 h-9' /></div>
+                                <p class='text-3xl'>{totalPosts}</p>
+                            </div>
+                            <div class='flex flex-col items-center'>
+                                <div><Tag class='w-9 h-9' /></div>
+                                <p class='text-3xl'>{totalTags}</p>
+                            </div>
                         </div>
-                        <div class='flex flex-col items-center'>
-                            <div><Tag class='w-9 h-9' /></div>
-                            <p class='text-3xl'>{totalTags}</p>
+                        <div
+                            class='flex flex-row w-full mb-4 justify-around text-bg text-profileTextLight dark:text-profileTextDark'
+                        >
+                            <a
+                                href='https://github.com/LuoYuXuanRyan'
+                                class='inline-flex w-2/5 justify-center hover:bg-bgLight dark:hover:bg-bgDark rounded-md'
+                            >
+                                <Github class='h-6 w-4 mr-1' />
+                                GitHub
+                            </a>
+                            <a
+                                href='mailto:1505172926@qq.com?subject=From%20Astro%20Blog%20'
+                                class='inline-flex w-2/5 justify-center hover:bg-bgLight dark:hover:bg-bgDark rounded-md'
+                            >
+                                <Mail class='h-6 w-4 mr-1' />
+                                Mail
+                            </a>
                         </div>
                     </div>
-                    <div
-                        class='flex flex-row w-full mb-4 justify-around text-bg text-profileTextLight dark:text-profileTextDark'
-                    >
-                        <a
-                            href=''
-                            class='inline-flex w-2/5 justify-center hover:bg-bgLight dark:hover:bg-bgDark rounded-md'
-                        >
-                            <Github class='h-6 w-4 mr-1' />
-                            GitHub
-                        </a>
-                        <a
-                            href=''
-                            class='inline-flex w-2/5 justify-center hover:bg-bgLight dark:hover:bg-bgDark rounded-md'
-                        >
-                            <Mail class='h-6 w-4 mr-1' />
-                            Mail
-                        </a>
-                    </div>
-                </div>
-                <FriendLink />
+                    <FriendLink />
+                </motion.div>
             </div>
+
             <div
                 class='flex-auto md:w-8/12
                 md:ml-0.5 md:mr-0.5
