@@ -21,4 +21,6 @@
 body,
 html {
     font-family: 'David Libre', '仓耳今楷', Georgia, 'Times New Roman', Times;
+    overflow: hidden;
+    height: 100%;
 }

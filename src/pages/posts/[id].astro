@@ -16,37 +16,52 @@ const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 ---
 
-<Post>
-    <Navigation slot='header' />
-    <Prose slot='article'>
-        <Content />
-    </Prose>
-    <div slot='headings' class="w-11/12 space-y-1">
-        {
-            headings.map(
-                (
-                    heading: { depth: number; slug: string; text: string },
-                    id: number
-                ) => {
-                    let space = ' '.repeat((heading.depth - 1) * 4);
-                    let text = `${id + 1}. ${heading.text}`;
-                    let full_text = `${space}${text}`;
-                    return (
-                        <a
-                            class='whitespace-pre
-                                text-profileTextLight dark:text-profileTextDark 
-                                hover:bg-bgLight dark:hover:bg-bgDark
-                                rounded-md w-full block font-bold text-ellipsis overflow-hidden'
-                            href={`#${heading.slug}`}
-                        >
-                            {full_text}
-                        </a>
-                    );
+<html lang='en'>
+    <head>
+        <meta charset='utf-8' />
+        <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+        <meta name='viewport' content='width=device-width' />
+        <meta name='generator' content={Astro.generator} />
+        <title>Radish Garden</title>
+    </head>
+    <body>
+        <Post>
+            <Navigation slot='header' />
+            <Prose slot='article'>
+                <Content />
+            </Prose>
+            <div slot='headings' class='w-11/12 space-y-1'>
+                {
+                    headings.map(
+                        (
+                            heading: {
+                                depth: number;
+                                slug: string;
+                                text: string;
+                            },
+                            id: number
+                        ) => {
+                            let space = ' '.repeat((heading.depth - 1) * 4);
+                            let text = `${id + 1}. ${heading.text}`;
+                            let full_text = `${space}${text}`;
+                            return (
+                                <a
+                                    class='whitespace-pre
+                                        text-profileTextLight dark:text-profileTextDark 
+                                        hover:bg-bgLight dark:hover:bg-bgDark
+                                        rounded-md w-full block font-bold text-ellipsis overflow-hidden'
+                                    href={`#${heading.slug}`}
+                                >
+                                    {full_text}
+                                </a>
+                            );
+                        }
+                    )
                 }
-            )
-        }
-    </div>
-</Post>
+            </div>
+        </Post>
+    </body>
+</html>
 
 <script>
     let copyButtonLabel = 'Copy';

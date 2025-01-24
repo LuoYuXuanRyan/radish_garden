@@ -1,112 +1,104 @@
 ---
 import * as motion from 'motion/react-client';
-
+import Avatar from '../components/avatar.astro';
 import { getEntry, render } from 'astro:content';
-
 const entry = await getEntry('about', 'aboutme');
 const { Content, headings } = await render(entry!);
 ---
 
-<html lang='en'>
-    <head>
-        <meta charset='utf-8' />
-        <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-        <meta name='viewport' content='width=device-width' />
-        <meta name='generator' content={Astro.generator} />
-        <title>Radish Garden</title>
-    </head>
-    <body
-        class='bg-bodyLight dark:bg-bodyDark flex flex-col overflow-hidden'
-        style='height: calc(100vh - 4rem)'
-    >
-        <slot name='header' />
-        <main class='flex flex-col w-full h-full items-center'>
-            <div
-                class='flex flex-col w-11/12 md:w-3/4
+<!-- overall frame -->
+<div
+    class='bg-bodyLight dark:bg-bodyDark flex flex-col overflow-hidden h-screen'
+>
+    <!-- navigation slot -->
+    <slot name='header' />
+    <!-- main content -->
+    <div class='flex flex-col w-full h-full items-center overflow-scroll'>
+        <!-- main card -->
+        <div
+            class='flex flex-col w-11/12 md:w-3/4
                 border-2 border-bgDark
                 shadow-2xl shadow-bgDark dark:shadow-fontDark
-                p-4 pt-8 pb-20 mt-2 mb-2 overflow-scroll'
+                p-4 pt-8 pb-20 mt-4 mb-4'
+        >
+            <motion.div
+                client:load
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{
+                    duration: 0.4,
+                }}
             >
-                <motion.div
-                    client:load
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{
-                        duration: 0.4,
-                    }}
+                <div
+                    class='flex flex-col md:flex-row md:justify-around items-center'
+                >
+                    <!-- avatar -->
+                    <Avatar
+                        src='/avatar.webp'
+                        alt='avatar'
+                        size={{ base: 36, md: 44 }}
+                    />
+                    <!-- <motion.div client:load whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
+                        <img
+                            src='/avatar.webp'
+                            alt='avatar'
+                            class={`rounded-full border-2
+                            h-36 w-36 md:h-44 md:w-44`}
+                        /> 
+                    </motion.div> -->
+                    <div
+                        class='flex flex-col items-center md:items-start italic w-11/12 md:w-3/4'
+                    >
+                        <p
+                            class='text-3xl text-profileTextLight dark:text-profileTextDark'
+                        >
+                            Ryan
+                            <span
+                                class='text-xl ml-6 text-descriptionTextLight dark:text-descriptionTextDark dark:opacity-80'
+                            >
+                                ---- A CS enthusiast <span class='not-italic'
+                                    >🥰</span
+                                >
+                            </span>
+                        </p>
+                        <p
+                            class='text-lg md:ml-4 indent-8 text-fontLight dark:text-fontDark
+                            tracking-wider text-justify'
+                        >
+                            I'm a student at Nanjing University of Posts and
+                            Telecommunications (<a
+                                href='https://www.njupt.edu.cn'
+                                class='underline'>NJUPT</a
+                            >), where I'm studying Computer Science and
+                            Technology. I'm really interested in all things
+                            computer-related, and I've set up this blog to share
+                            my knowledge and insights on learning computer
+                            technology. I've also included some of my notes and
+                            resources on
+                            <a
+                                href='https://github.com/LuoYuXuanRyan'
+                                class='underline'>GitHub</a
+                            > if you'd like to learn more about me. If you have any
+                            questions, please feel free to contact me via
+                            <a
+                                href='mailto:1505172926@qq.com?subject=From%20Astro%20Blog%20'
+                                class='underline'
+                            >
+                                Email</a
+                            > .
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class='flex justify-center text-lg text-fontLight dark:text-fontDark mt-10'
                 >
                     <div
-                        class='flex flex-col md:flex-row md:justify-around items-center'
+                        class='w-11/12 indent-8 leading-8 tracking-wider text-justify'
                     >
-                        <div class='flex md:items-center justify-center'>
-                            <motion.div
-                                client:load
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.8 }}
-                            >
-                                <img
-                                    src='/avatar.webp'
-                                    alt='avatar'
-                                    class='bg-bgLight shrink-0 rounded-full
-                            md:h-44 md:w-44
-                            h-36 w-36'
-                                />
-                            </motion.div>
-                        </div>
-                        <div
-                            class='flex flex-col items-center md:items-start italic w-11/12 md:w-3/4'
-                        >
-                            <p
-                                class='text-3xl text-profileTextLight dark:text-profileTextDark'
-                            >
-                                Ryan
-                                <span
-                                    class='text-xl ml-6 text-descriptionTextLight dark:text-descriptionTextDark dark:opacity-80'
-                                >
-                                    ---- A CS enthusiast <span
-                                        class='not-italic'>🥰</span
-                                    >
-                                </span>
-                            </p>
-                            <p
-                                class='text-lg md:ml-4 indent-8 text-fontLight dark:text-fontDark
-                            tracking-wider text-justify'
-                            >
-                                I'm a student at Nanjing University of Posts and
-                                Telecommunications (<a
-                                    href='https://www.njupt.edu.cn'
-                                    class='underline'>NJUPT</a
-                                >), where I'm studying Computer Science and
-                                Technology. I'm really interested in all things
-                                computer-related, and I've set up this blog to
-                                share my knowledge and insights on learning
-                                computer technology. I've also included some of
-                                my notes and resources on
-                                <a
-                                    href='https://github.com/LuoYuXuanRyan'
-                                    class='underline'>GitHub</a
-                                > if you'd like to learn more about me. If you have
-                                any questions, please feel free to contact me via
-                                <a
-                                    href='mailto:1505172926@qq.com?subject=From%20Astro%20Blog%20'
-                                    class='underline'
-                                >
-                                    Email</a
-                                > .
-                            </p>
-                        </div>
+                        <Content />
                     </div>
-                    <div
-                        class='flex justify-center text-lg text-fontLight dark:text-fontDark mt-10'
-                    >
-                        <div
-                            class='w-11/12 indent-8 leading-8 tracking-wider text-justify'
-                        >
-                            <Content />
-                        </div>
-                    </div>
-                </motion.div>
-            </div>
-        </main>
-    </body>
-</html>
+                </div>
+            </motion.div>
+        </div>
+    </div>
+</div>
