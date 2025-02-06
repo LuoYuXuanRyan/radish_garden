@@ -206,13 +206,10 @@ while running:
 pygame.quit()
 ```
 
-### 💰 隐藏福利：API接入的正确打开方式
-虽然目前DeepSeek R1的API平台暂时维护中，但提前剧透：
-- 价格比Cursor Pro便宜N倍（约等于白嫖）
-- 响应速度堪比闪电侠⚡
-- 支持流式输出（看着代码逐行生成超治愈！）
+### 💡 API接入指南：轻松获取与设置
+首先，访问[deepseek API开放平台](https://platform.deepseek.com/usage)，完成注册后即可获得10元初始余额。接着，点击`API keys`，随后点击`创建 API key`，为你的API key输入一个名称，随后系统会生成一串API key，请复制并妥善保存此key以备后续使用。
+然后，返回到Cursor的设置页面，进入Setting > Models，找到OpenAI API key的输入位置，将刚才复制的API key粘贴至此，并点击`Override OpenAI Base URL`，在此输入`https://api.deepseek.com/v1`，完成保存并验证。之后，在模型列表中创建一个新模型，命名为`deepseek-chat`，保存设置。现在，你已可以在对话中选择使用这个新模型了！
 
-**剧透警报**：等API开放后，博主会第一时间更新接入教程！（先点个收藏防走失⭐）
 
 ### 🎁 彩蛋时间
 新用户注册Cursor会送Pro试用！快去试试这些玩法：
