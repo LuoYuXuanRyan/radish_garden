@@ -1,0 +1,15 @@
+---
+const handleTagClick = (tags: string[]) => {};
+---
+
+<div class='sticky bg-white/80 backdrop-blur p-4'>
+    <input
+        type='text'
+        class='w-full p-2 ring-gray-50 rounded-md'
+        placeholder='Search for posts by tag'
+        onsubmit="handleTagClick(this.value)"
+    />
+    <button
+      class="ml-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+    >Search</button>
+</div>
