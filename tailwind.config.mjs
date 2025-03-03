@@ -6,7 +6,7 @@ export default {
         colors: {
             transparent: 'transparent',
             current: 'currentColor',
-            bodyLight: '#f1f1f1',
+            bodyLight: '#efefef',
             bodyDark: '#212121',
             bgLight: '#E7EAEF',
             bgDark: '#292929',

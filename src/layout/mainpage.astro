@@ -1,4 +1,5 @@
 ---
+import config from '../../config';
 import Github from '../components/icons/github.astro';
 import Mail from '../components/icons/mail.astro';
 import FriendLink from '../components/friendLink.astro';
@@ -45,19 +46,19 @@ const totalTags = tags.size;
                 >
                     <!-- avatar -->
                     <Avatar
-                        src='/avatar.webp'
+                        src={config.avatar}
                         alt='avatar'
                         size={{ base: 36, md: 40 }}
                     />
                     <p
                         class='text-profileTextLight dark:text-profileTextDark text-2xl mt-2 italic'
                     >
-                        Ryan
+                        {config.author}
                     </p>
                     <p
                         class='text-descriptionTextLight dark:text-descriptionTextDark text-bg italic'
                     >
-                        ---- A CS enthusiast <span class='not-italic'>🥰</span>
+                        ---- {config.author_description}
                     </p>
                     <div
                         class='flex flex-row w-full justify-around mt-4 mb-4 text-2xl text-profileTextLight dark:text-profileTextDark'
@@ -75,18 +76,18 @@ const totalTags = tags.size;
                         class='flex flex-row w-full mb-4 justify-around text-bg text-profileTextLight dark:text-profileTextDark'
                     >
                         <a
-                            href='https://github.com/LuoYuXuanRyan'
+                            href={config.github}
                             class='inline-flex w-2/5 justify-center hover:bg-bgLight dark:hover:bg-bgDark rounded-md'
                         >
                             <Github class='h-6 w-4 mr-1' />
                             GitHub
                         </a>
                         <a
-                            href='mailto:1505172926@qq.com?subject=From%20Astro%20Blog%20'
+                            href=`mailto:${config.email}?subject=${config.email_subject}`
                             class='inline-flex w-2/5 justify-center hover:bg-bgLight dark:hover:bg-bgDark rounded-md'
                         >
                             <Mail class='h-6 w-4 mr-1' />
-                            Mail
+                            E-Mail
                         </a>
                     </div>
                 </div>

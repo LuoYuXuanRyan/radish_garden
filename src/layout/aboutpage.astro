@@ -2,6 +2,9 @@
 import * as motion from 'motion/react-client';
 import Avatar from '../components/avatar.astro';
 import { getEntry, render } from 'astro:content';
+import AboutMe from '../components/aboutMe.astro'
+import config from '../../config';
+import About from '../pages/about.astro';
 const entry = await getEntry('about', 'aboutme');
 const { Content, headings } = await render(entry!);
 ---
@@ -34,59 +37,24 @@ const { Content, headings } = await render(entry!);
                 >
                     <!-- avatar -->
                     <Avatar
-                        src='/avatar.webp'
+                        src={config.avatar}
                         alt='avatar'
                         size={{ base: 36, md: 44 }}
                     />
-                    <!-- <motion.div client:load whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
-                        <img
-                            src='/avatar.webp'
-                            alt='avatar'
-                            class={`rounded-full border-2
-                            h-36 w-36 md:h-44 md:w-44`}
-                        /> 
-                    </motion.div> -->
                     <div
                         class='flex flex-col items-center md:items-start italic w-11/12 md:w-3/4'
                     >
                         <p
                             class='text-3xl text-profileTextLight dark:text-profileTextDark'
                         >
-                            Ryan
+                            {config.author}
                             <span
                                 class='text-xl ml-6 text-descriptionTextLight dark:text-descriptionTextDark dark:opacity-80'
                             >
-                                ---- A CS enthusiast <span class='not-italic'
-                                    >🥰</span
-                                >
+                                ---- {config.author_description}
                             </span>
                         </p>
-                        <p
-                            class='text-lg md:ml-4 indent-8 text-fontLight dark:text-fontDark
-                            tracking-wider text-justify'
-                        >
-                            I'm a student at Nanjing University of Posts and
-                            Telecommunications (<a
-                                href='https://www.njupt.edu.cn'
-                                class='underline'>NJUPT</a
-                            >), where I'm studying Computer Science and
-                            Technology. I'm really interested in all things
-                            computer-related, and I've set up this blog to share
-                            my knowledge and insights on learning computer
-                            technology. I've also included some of my notes and
-                            resources on
-                            <a
-                                href='https://github.com/LuoYuXuanRyan'
-                                class='underline'>GitHub</a
-                            > if you'd like to learn more about me. If you have any
-                            questions, please feel free to contact me via
-                            <a
-                                href='mailto:1505172926@qq.com?subject=From%20Astro%20Blog%20'
-                                class='underline'
-                            >
-                                Email</a
-                            > .
-                        </p>
+                        <AboutMe />
                     </div>
                 </div>
                 <div

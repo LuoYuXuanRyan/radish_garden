@@ -4,7 +4,7 @@ import * as motion from 'motion/react-client';
 ---
 
 <div
-    class='fixed bottom-4 right-4 md:right-36
+    class='fixed bottom-8 right-4 md:right-32
         text-fontLight dark:text-fontDark'
     id='backToTop'
 >
@@ -14,7 +14,7 @@ import * as motion from 'motion/react-client';
         whileTap={{ scale: 0.9 }}
         id='backToTop'
     >
-        <UpArrow class='h-8 w-8 md:h-12 md:w-12' />
+        <UpArrow class='h-10 w-10 md:h-12 md:w-12' />
     </motion.button>
 </div>
 
@@ -35,51 +35,46 @@ import * as motion from 'motion/react-client';
     if (backToTopButton) {
         backToTopButton.addEventListener('click', scrollToTop);
 
-    const debouncedAnimation = debounce(() => {
-        const scrollTop = Math.max(
-            ...Array.from(document.querySelectorAll('#main-content, #main-content-main, #main-content-div'))
-                .map(el => el.scrollTop)
-        );
-        const showThreshold = 100;
-
-        if (scrollTop > showThreshold) {
-            backToTopButton.style.visibility = 'visible';
-            backToTopButton.animate(
-                [
-                    { opacity: 1 },
-                ],
-                {
-                    duration: 200,
-                    fill: 'forwards',
-                }
+        const debouncedAnimation = debounce(() => {
+            const scrollTop = Math.max(
+                ...Array.from(
+                    document.querySelectorAll(
+                        '#main-content, #main-content-main, #main-content-div'
+                    )
+                ).map((el) => el.scrollTop)
             );
-            const svg = backToTopButton.querySelector('svg');
-            if (svg) {
-                svg.outerHTML = svg.outerHTML;
-            }
-        } else {
-            backToTopButton.animate(
-                [
-                    { opacity: 0 },
-                ],
-                {
+            const showThreshold = 100;
+
+            if (scrollTop > showThreshold) {
+                if (backToTopButton.style.visibility === 'hidden') {
+                    backToTopButton.style.visibility = 'visible';
+                    backToTopButton.animate([{ opacity: 1 }], {
+                        duration: 200,
+                        fill: 'forwards',
+                    });
+                    const svg = backToTopButton.querySelector('svg');
+                    if (svg) {
+                        svg.outerHTML = svg.outerHTML;
+                    }
+                }
+            } else {
+                backToTopButton.animate([{ opacity: 0 }], {
                     duration: 200,
                     fill: 'forwards',
-                }
-            ).onfinish = () => {
-                backToTopButton.style.visibility = 'hidden';
-            };
-        }
-    }, 200);
+                }).onfinish = () => {
+                    backToTopButton.style.visibility = 'hidden';
+                };
+            }
+        }, 200);
 
-    const mainContentElements = [
-        document.getElementById('main-content'),
-        document.getElementById('main-content-main'),
-        document.getElementById('main-content-div')
-    ].filter(el => el !== null);
+        const mainContentElements = [
+            document.getElementById('main-content'),
+            document.getElementById('main-content-main'),
+            document.getElementById('main-content-div'),
+        ].filter((el) => el !== null);
 
-    mainContentElements.forEach(mainContent => {
-        mainContent.addEventListener('scroll', debouncedAnimation);
-    });
+        mainContentElements.forEach((mainContent) => {
+            mainContent.addEventListener('scroll', debouncedAnimation);
+        });
     }
 </script>

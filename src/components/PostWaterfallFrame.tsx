@@ -28,7 +28,7 @@ export default function PostWaterfallFrame({ posts }: { posts: Post[] }) {
 
     return (
         <div>
-            <div className="search-container flex p-4">
+            <div className="search-container flex px-4 pt-4">
                 <input
                     type="text"
                     className="w-full p-2 ring-gray-50 rounded-l-md 

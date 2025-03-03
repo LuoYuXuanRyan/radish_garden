@@ -116,27 +116,24 @@ html {
     height: 100%;
 }
 
-/* 定义普通模式和深色模式下的背景颜色变量 */
 :root {
-    --code-bg-color-light: #eff1f2; /* 普通模式的背景颜色 */
-    --code-bg-color-dark: #333333;  /* 深色模式的背景颜色 */
+    --code-bg-color-light: #eff1f2;
+    --code-bg-color-dark: #333333;
 }
 
-/* 应用到code标签的样式 */
 code {
     border: 1px solid;
     border-radius: 0.2rem;
     padding: 0rem 0.15rem;
-    background-color: var(--code-bg-color-light); /* 默认使用普通模式的背景颜色 */
+    background-color: var(--code-bg-color-light);
 }
 
-/* 深色模式下的样式覆盖 */
 @media (prefers-color-scheme: dark) {
     code {
-        background-color: var(--code-bg-color-dark); /* 深色模式使用深色背景颜色 */
+        background-color: var(--code-bg-color-dark);
     }
 }
 
 .astro-code code {
-    border: none !important; /* 当code标签在pre标签内时，移除边框 */
+    border: none !important;
 }
