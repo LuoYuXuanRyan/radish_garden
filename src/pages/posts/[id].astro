@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Post from '../../layout/post.astro';
 import Prose from '../../components/Prose.astro';
 import Navigation from '../../layout/navigation.astro';
+import GoBackToTop from '../../components/goBackToTop.astro';
 
 export async function getStaticPaths() {
     const blogEntries = await getCollection('posts');
@@ -60,6 +61,7 @@ const { Content, headings } = await render(entry);
                 }
             </div>
         </Post>
+        <GoBackToTop />
     </body>
 </html>
 
@@ -71,7 +73,7 @@ const { Content, headings } = await render(entry);
         let wrapper = document.createElement('div');
         wrapper.style.position = 'relative';
         let copyButton = document.createElement('button');
-        copyButton.className = 'copy-code';
+        copyButton.className = 'copy-code cursor-copy';
         copyButton.innerHTML = copyButtonLabel;
         copyButton.style.position = 'absolute';
         copyButton.style.right = '10px';
@@ -100,4 +102,20 @@ const { Content, headings } = await render(entry);
             button.innerText = copyButtonLabel;
         }, 1000);
     }
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll("a[href^='#']").forEach((anchor) => {
+            anchor.addEventListener('click', function (event) {
+                event.preventDefault();
+                const targetId = anchor.getAttribute('href')!.substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start',
+                    });
+                }
+            });
+        });
+    });
 </script>

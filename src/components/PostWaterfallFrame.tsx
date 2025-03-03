@@ -3,7 +3,6 @@ import { Search } from './icons/search.tsx';
 import type { Post } from '../content.config.ts';
 import React, { useState, useEffect } from 'react';
 import debounce from 'lodash/debounce';
-import type { string } from 'astro:schema';
 
 export default function PostWaterfallFrame({ posts }: { posts: Post[] }) {
     const [searchInput, setSearchInput] = useState<string>("");

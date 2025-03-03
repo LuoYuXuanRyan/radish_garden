@@ -1,0 +1,85 @@
+---
+import UpArrow from './icons/upArrow.astro';
+import * as motion from 'motion/react-client';
+---
+
+<div
+    class='fixed bottom-4 right-4 md:right-36
+        text-fontLight dark:text-fontDark'
+    id='backToTop'
+>
+    <motion.button
+        client:load
+        whileHover={{ scale: 1.2 }}
+        whileTap={{ scale: 0.9 }}
+        id='backToTop'
+    >
+        <UpArrow class='h-8 w-8 md:h-12 md:w-12' />
+    </motion.button>
+</div>
+
+<script>
+    import { debounce } from 'lodash';
+
+    const scrollToTop = () => {
+        const mainContentElement = document.getElementById('main-content');
+        if (mainContentElement) {
+            mainContentElement.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        }
+    };
+
+    const backToTopButton = document.getElementById('backToTop');
+    if (backToTopButton) {
+        backToTopButton.addEventListener('click', scrollToTop);
+
+    const debouncedAnimation = debounce(() => {
+        const scrollTop = Math.max(
+            ...Array.from(document.querySelectorAll('#main-content, #main-content-main, #main-content-div'))
+                .map(el => el.scrollTop)
+        );
+        const showThreshold = 100;
+
+        if (scrollTop > showThreshold) {
+            backToTopButton.style.visibility = 'visible';
+            backToTopButton.animate(
+                [
+                    { opacity: 1 },
+                ],
+                {
+                    duration: 200,
+                    fill: 'forwards',
+                }
+            );
+            const svg = backToTopButton.querySelector('svg');
+            if (svg) {
+                svg.outerHTML = svg.outerHTML;
+            }
+        } else {
+            backToTopButton.animate(
+                [
+                    { opacity: 0 },
+                ],
+                {
+                    duration: 200,
+                    fill: 'forwards',
+                }
+            ).onfinish = () => {
+                backToTopButton.style.visibility = 'hidden';
+            };
+        }
+    }, 200);
+
+    const mainContentElements = [
+        document.getElementById('main-content'),
+        document.getElementById('main-content-main'),
+        document.getElementById('main-content-div')
+    ].filter(el => el !== null);
+
+    mainContentElements.forEach(mainContent => {
+        mainContent.addEventListener('scroll', debouncedAnimation);
+    });
+    }
+</script>

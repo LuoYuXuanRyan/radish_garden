@@ -5,7 +5,7 @@ import FriendLink from '../components/friendLink.astro';
 import Post from '../components/icons/post.astro';
 import Tag from '../components/icons/tag.astro';
 import Avatar from '../components/avatar.astro';
-import PostWaterfallFrame from '../components/PostWaterfallFrame.tsx';
+import GoBackToTop from '../components/goBackToTop.astro';
 import * as motion from 'motion/react-client';
 import { getCollection } from 'astro:content';
 const posts = await getCollection('posts');
@@ -23,7 +23,7 @@ const totalTags = tags.size;
     class='bg-bodyLight dark:bg-bodyDark flex flex-col h-screen overflow-hidden'
 >
     <slot name='header' />
-    <main class='flex flex-1 flex-col md:flex-row overflow-y-scroll'>
+    <main class='flex flex-1 flex-col md:flex-row overflow-y-scroll' id="main-content-main">
         <div
             class='md:bg-bgLight md:dark:bg-bgDark flex flex-auto flex-col md:w-3/12 md:pl-16'
         >
@@ -98,6 +98,7 @@ const totalTags = tags.size;
             class='flex-auto md:w-8/12
                 md:ml-0.5 md:mr-0.5
                 ml-2 mr-2 md:overflow-y-scroll'
+            id="main-content-div"
         >
             <slot name='main' />
         </div>
@@ -110,5 +111,23 @@ const totalTags = tags.size;
                 </p>
             </div>
         </div>
+        <GoBackToTop />
     </main>
 </body>
+
+<script>
+    const setMainContentId = () => {
+        const mainElement = document.getElementById('main-content-main');
+        const specificDivElement = document.getElementById('main-content-div');
+
+        if (window.innerWidth >= 768) {
+            specificDivElement?.setAttribute('id', 'main-content');
+            mainElement?.removeAttribute('id');
+        } else {
+            mainElement?.setAttribute('id', 'main-content');
+            specificDivElement?.removeAttribute('id');
+        }
+    };
+    window.onload = setMainContentId;
+    window.addEventListener('resize', setMainContentId);
+</script>
