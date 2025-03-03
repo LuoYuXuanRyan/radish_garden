@@ -20,11 +20,10 @@ const totalTags = tags.size;
 ---
 
 <body
-    class='bg-bodyLight dark:bg-bodyDark flex flex-col
-        overflow-y-scroll md:overflow-hidden h-screen'
+    class='bg-bodyLight dark:bg-bodyDark flex flex-col h-screen overflow-hidden'
 >
     <slot name='header' />
-    <main class='flex flex-1 flex-col md:flex-row'>
+    <main class='flex flex-1 flex-col md:flex-row overflow-y-scroll'>
         <div
             class='md:bg-bgLight md:dark:bg-bgDark flex flex-auto flex-col md:w-3/12 md:pl-16'
         >
@@ -39,8 +38,8 @@ const totalTags = tags.size;
                 <!-- foil -->
                 <div
                     class='bg-foilLight dark:bg-foilDark flex flex-col items-center
-                                md:mt-2 md:ml-8 md:mr-4
-                                mt-20 ml-4 mr-4
+                                mt-2 md:ml-8 md:mr-4
+                                ml-4 mr-4
                                 pt-2
                                 rounded-2xl'
                 >
@@ -98,7 +97,7 @@ const totalTags = tags.size;
         <div
             class='flex-auto md:w-8/12
                 md:ml-0.5 md:mr-0.5
-                ml-2 mr-2'
+                ml-2 mr-2 md:overflow-y-scroll'
         >
             <slot name='main' />
         </div>
