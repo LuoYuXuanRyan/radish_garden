@@ -1,7 +1,9 @@
 ---
-import FirendLinks from '../components/icons/friendLinks.astro';
+import FriendLinks from '../components/icons/friendLinks.astro';
 import FriendLinkItem from '../components/friendLinkItem.astro';
+import config from '../../config';
 ---
+
 <div
     class='bg-foilLight dark:bg-foilDark flex flex-col items-center
                     text-bg text-profileTextLight dark:text-profileTextDark
@@ -11,8 +13,14 @@ import FriendLinkItem from '../components/friendLinkItem.astro';
                     p-4 pt-0'
 >
     <div class='flex flex-row mt-2'>
-        <FirendLinks class='h-6 w-4 mr-1' />
+        <FriendLinks class='h-6 w-4 mr-1' />
         Friend Links
     </div>
-    <FriendLinkItem blogName="BlockLune's Blog" link='https://blocklune.cc' />
+    <div class='flex flex-col w-full'>
+        {
+            Object.entries(config.friendlink).map(([blogName, link]) => (
+                <FriendLinkItem blogName={blogName} link={link} />
+            ))
+        }
+    </div>
 </div>

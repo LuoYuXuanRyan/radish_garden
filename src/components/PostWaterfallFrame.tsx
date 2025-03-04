@@ -28,34 +28,38 @@ export default function PostWaterfallFrame({ posts }: { posts: Post[] }) {
 
     return (
         <div>
-            <div className="search-container flex px-4 pt-4">
-                <input
-                    type="text"
-                    className="w-full p-2 ring-gray-50 rounded-l-md 
-                    bg-foilLight dark:bg-bgDark text-fontLight dark:text-fontDark"
-                    placeholder="Search for posts"
-                    value={searchInput}
-                    onChange={(e) => setSearchInput(e.target.value)}
-                />
-                <select
-                    className="search-type-dropdown rounded-r-md
-                    bg-foilLight dark:bg-bgDark text-fontLight dark:text-fontDark"
-                    value={searchType}
-                    onChange={(e) => setSearchType(e.target.value)}
-                >
-                    <option value="title">by Title</option>
-                    <option value="tag">by Tag</option>
-                </select>
+            <div className="flex px-4 pt-4">
                 <button
-                    className="ml-2 text-fontLight dark:text-fontDark "
+                    className="pl-2 rounded-l-md bg-foilLight dark:bg-bgDark text-fontLight dark:text-fontDark"
                     id="searchButton"
                     onClick={debouncedHandleSearch}
                 >
                     <Search />
                 </button>
+                <input
+                    type="text"
+                    className="w-full p-2
+                    bg-foilLight dark:bg-bgDark text-fontLight dark:text-fontDark"
+                    placeholder="Search for posts"
+                    value={searchInput}
+                    onChange={(e) => setSearchInput(e.target.value)}
+                />
+                <div className='inline-flex rounded-r-md bg-foilLight dark:bg-bgDark text-fontLight dark:text-fontDark'>
+                    <select
+                        className="pl-2 appearance-none"
+                        value={searchType}
+                        onChange={(e) => setSearchType(e.target.value)}
+                    >
+                        <option value="title">by Title</option>
+                        <option value="tag">by Tag</option>
+                    </select>
+                    <div className="flex items-center">
+                        <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.071L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                    </div>
+                </div>
             </div>
 
-            <div className="post-waterfall p-4">
+            <div className="p-4">
                 {filteredPosts.map((post) => (
                     <a href={`/posts/${post.id}`} key={post.id}>
                         <PostCard
