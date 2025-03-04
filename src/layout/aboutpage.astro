@@ -4,7 +4,7 @@ import Avatar from '../components/avatar.astro';
 import { getEntry, render } from 'astro:content';
 import AboutMe from '../components/aboutMe.astro'
 import config from '../../config';
-import About from '../pages/about.astro';
+import '../styles/global.css'
 const entry = await getEntry('about', 'aboutme');
 const { Content, headings } = await render(entry!);
 ---

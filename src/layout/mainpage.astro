@@ -9,6 +9,7 @@ import Avatar from '../components/avatar.astro';
 import GoBackToTop from '../components/goBackToTop.astro';
 import * as motion from 'motion/react-client';
 import { getCollection } from 'astro:content';
+import '../styles/global.css'
 const posts = await getCollection('posts');
 const totalPosts = posts.length;
 let tags = new Set();
