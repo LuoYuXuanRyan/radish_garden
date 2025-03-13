@@ -39,7 +39,7 @@ RAGFlow是一个基于深度文档理解的开源RAG（检索增强生成）引�
 
 进入`C:/user/<username>/`目录，编辑（如果没有则创建）`.wslconfig`文件。
 
-```powershell
+```plaintext
 [wsl2]
 kernelCommandLine = "sysctl.vm.max_map_count=262144"
 ```
@@ -61,7 +61,7 @@ code .
 
 在刚刚的终端中输入
 
-```
+```bash
 docker compose -f docker-compose.yml up -d
 ```
 
@@ -71,13 +71,13 @@ docker compose -f docker-compose.yml up -d
 
 拉取完毕后，输入
 
-```powe
+```bash
 docker logs -f ragflow-server
 ```
 
 如果看到
 
-```pow
+```plaintext
      ____   ___    ______ ______ __
     / __ \ /   |  / ____// ____// /____  _      __
    / /_/ // /| | / / __ / /_   / // __ \| | /| / /
@@ -94,7 +94,7 @@ docker logs -f ragflow-server
 
 打开浏览器，输入
 
-```url
+```plaintext
 localhost:80
 ```
 
@@ -121,7 +121,7 @@ localhost:80
 - 成功解析文件，但是无法进行聊天或者看不到产生的chunk：可能是后端内存太小，需要增加WSL可以使用的内存，请参考[这篇文章](https://learn.microsoft.com/zh-cn/windows/wsl/wsl-config#wslconfig)。笔者是将WSL的内存设置成了11GB。
   你的.wslconfig文件可能会增加这些内容：
 
-  ```config
+  ```plaintext
   [wsl2]
   memory=11GB
   ```
