@@ -13,7 +13,7 @@ export default function PostCard({ title, tags, description, introText, author, 
     return (
         <motion.div
             whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0.9, x: -50 }}
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{
                 duration: 0.4,
