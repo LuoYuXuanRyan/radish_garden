@@ -4,7 +4,7 @@ publishDate: '2025-2-27'
 description: 'RAGFlow 防踩坑必看'
 introText: 'RAG（Retrieval-Augmented Generation，检索增强生成）是一种结合了信息检索（Retrieval）和自然语言生成（Generation）的技术框架。它通过从外部知识库中检索相关信息，并将其作为上下文输入到大型语言模型（LLM）中，从而增强模型生成回答的准确性、相关性和可解释性。RAGFlow是一个基于深度文档理解的开源RAG（检索增强生成）引擎。当与LLM集成时，它能够提供真实的问答能力，并得到来自各种复杂格式数据的充分引用的支持。'
 author: 'Ryan'
-tags: ['llm', 'RAG']
+tags: ['llm', 'RAG', 'RAGFlow']
 slug: 'ragflow-local-deployment-windows'
 ---
 

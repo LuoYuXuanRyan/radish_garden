@@ -26,7 +26,7 @@ export default function PostCard({ title, tags, description, introText, author, 
                         hover:shadow-lg shadow-bgDark dark:shadow-bgLight`}
             >
                 <div className='flex flex-col md:flex-row justify-between'>
-                    <h1 className='text-2xl font-bold'>{title}</h1>
+                    <h1 className='text-2xl font-bold md:max-w-lg'>{title}</h1>
                     <div className='flex gap-2 overflow-x-scroll'>
                         {
                             tags.map((tag: string) => (
