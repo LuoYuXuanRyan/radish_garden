@@ -46,7 +46,7 @@ export default function PostWaterfallFrame({ posts }: { posts: Post[] }) {
                 />
                 <div className='inline-flex rounded-r-md bg-foilLight dark:bg-bgDark text-fontLight dark:text-fontDark'>
                     <select
-                        className="pl-2 appearance-none"
+                        className="pl-2 appearance-none bg-foilLight dark:bg-bgDark"
                         value={searchType}
                         onChange={(e) => setSearchType(e.target.value)}
                     >
