@@ -17,7 +17,7 @@ const config: Config = {
     author: 'Ryan',
     author_description: 'A CS enthusiast!',
     github: 'https://github.com/LuoYuXuanRyan',
-    email: '1505172926@qq.com',
+    email: 'ryanluo12138@126.com',
     email_subject: 'From%20Astro%20Blog%20',
     friendlink: {
         "BlockLune's Blog": 'https://blocklune.cc',
