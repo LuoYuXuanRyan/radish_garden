@@ -1,5 +1,6 @@
 @import 'normalize.css';
 @import url("https://fontsapi.zeoseven.com/442/main/result.css");
+@import url("https://fontsapi.zeoseven.com/292/main/result.css");
 
 /* david-libre-latin-400-normal */
 @font-face {
@@ -94,25 +95,9 @@
         U+A720-A7FF;
 }
 
-@font-face {
-    font-family: '仓耳今楷';
-    font-style: normal;
-    font-display: fallback;
-    font-weight: 400;
-    src: url('./fonts/仓耳今楷05-w03.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: '仓耳今楷';
-    font-style: normal;
-    font-display: fallback;
-    font-weight: 800;
-    src: url('./fonts/仓耳今楷05-w05.woff2') format('woff2');
-}
-
 body,
 html {
-    font-family: 'David Libre', '仓耳今楷', Georgia, 'Times New Roman', Times;
+    font-family: 'David Libre', 'LXGW WenKai', Georgia, 'Times New Roman', Times;
     overflow: hidden;
     height: 100%;
 }
