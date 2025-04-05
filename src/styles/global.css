@@ -1,4 +1,5 @@
 @import 'normalize.css';
+@import url("https://fontsapi.zeoseven.com/442/main/result.css");
 
 /* david-libre-latin-400-normal */
 @font-face {
@@ -126,6 +127,8 @@ code {
     border-radius: 0.2rem;
     padding: 0rem 0.15rem;
     background-color: var(--code-bg-color-light);
+    font-family: "Maple Mono NF CN" !important;
+    font-weight: 200 !important;
 }
 
 @media (prefers-color-scheme: dark) {
