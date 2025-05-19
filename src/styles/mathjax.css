@@ -2,5 +2,7 @@
     max-width: 80vw;
     display: inline-block;
     overflow: auto;
-    font-size: calc(0.8rem + 0.6vw);
+    /* font-size: calc(0.8rem + 0.6vw); */
+    font-size: 1rem;
+    vertical-align: middle;
 }
