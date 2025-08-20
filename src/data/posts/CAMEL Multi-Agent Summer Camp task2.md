@@ -33,7 +33,7 @@ slug: 'camel-multi-agent-summer-camp-task2'
 	- Agent 学习调用外部API，以获取模型权重中缺失的额外信息（在预训练后通常难以更改），包括当前信息、代码执行能力、访问专有信息源等。
 
 LLM 驱动的 Agent 系统结构
-![[agent-overview.png]]
+![LLM 驱动的 Agent 系统结构](./CAMEL-Multi-Agent-Summer-Camp-task2.assets/agent-overview.png)
 
 ## CAMEL Agent 开发
 **以下内容基于[CAMEL 官方文档](https://datawhalechina.github.io/handy-multi-agent/#/chapter2/2.3.models)整理**
