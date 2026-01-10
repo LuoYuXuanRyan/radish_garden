@@ -1,0 +1,210 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+// 获取所有文章
+const posts = await getCollection('posts');
+
+// 按标签分组
+interface TagGroup {
+    tag: string;
+    posts: CollectionEntry<"posts">[];
+    count: number;
+}
+
+const tagGroups: TagGroup[] = (() => {
+    const tagMap = new Map<string, CollectionEntry<"posts">[]>();
+
+    posts.forEach(post => {
+        post.data.tags.forEach(tag => {
+            if (!tagMap.has(tag)) {
+                tagMap.set(tag, []);
+            }
+            tagMap.get(tag)!.push(post);
+        });
+    });
+
+    return Array.from(tagMap.entries())
+        .map(([tag, posts]) => ({
+            tag,
+            posts: posts.sort((a, b) =>
+                new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+            ),
+            count: posts.length,
+        }))
+        .sort((a, b) => b.count - a.count);
+})();
+
+const totalPosts = posts.length;
+const totalTags = tagGroups.length;
+---
+
+<div>
+    <!-- 页面标题 -->
+    <div class='px-4 pt-4'>
+        <h1 class='text-3xl font-bold text-fontLight dark:text-fontDark mb-2'>
+            标签聚合
+        </h1>
+        <p class='text-sm text-descriptionTextLight dark:text-descriptionTextDark'>
+            共 {totalTags} 个标签，{totalPosts} 篇文章
+        </p>
+    </div>
+
+    <!-- 标签云 -->
+    <div class='px-4 pt-4 flex flex-wrap gap-2' id='tags-cloud'>
+        {
+            tagGroups.map((group, index) => (
+                <button
+                    class='tag-filter-btn'
+                    data-tag={group.tag}
+                    style={`animation-delay: ${index} * 0.03s`}
+                >
+                    <span class='inline-block px-3 py-1 rounded-lg font-bold text-sm
+                        bg-foilLight dark:bg-bgDark
+                        text-fontLight dark:text-fontDark
+                        hover:opacity-80 transition-all duration-300
+                        cursor-pointer'>
+                        {group.tag} ({group.count})
+                    </span>
+                </button>
+            ))
+        }
+    </div>
+
+    <!-- 标签详情列表 -->
+    <div class='p-4' id='tags-list'>
+        {
+            tagGroups.map((group, groupIndex) => (
+                <div
+                    class='tag-section mb-4'
+                    data-tag={group.tag}
+                    style={`animation-delay: ${groupIndex} * 0.05s`}
+                >
+                    <div class='rounded-2xl pt-4 pb-4 pl-10 pr-10
+                        bg-foilLight dark:bg-bgDark
+                        text-fontLight dark:text-fontDark
+                        transition-all duration-300
+                        hover:shadow-lg shadow-bgDark dark:shadow-bgLight'>
+
+                        <!-- 标签标题 -->
+                        <div class='flex items-center justify-between mb-4'>
+                            <h2 class='text-2xl font-bold text-phOrange'>
+                                #{group.tag}
+                            </h2>
+                            <span class='text-sm text-descriptionTextLight dark:text-descriptionTextDark'>
+                                {group.count} 篇文章
+                            </span>
+                        </div>
+
+                        <!-- 文章列表 -->
+                        <div class='space-y-3'>
+                            {
+                                group.posts.map((post) => (
+                                    <a
+                                        href={`/posts/${post.id}`}
+                                        class='
+                                            block p-3 rounded-lg
+                                            hover:bg-bgLight dark:hover:bg-bgDark
+                                            transition-all duration-200
+                                            border-l-4 border-phOrange
+                                            hover:pl-4'
+                                    >
+                                        <div class='flex flex-col md:flex-row md:items-center md:justify-between gap-1'>
+                                            <h3 class='text-lg font-semibold hover:text-phOrange transition-colors'>
+                                                {post.data.title}
+                                            </h3>
+                                            <div class='flex items-center gap-3 text-sm text-descriptionTextLight dark:text-descriptionTextDark'>
+                                                <span>{post.data.author}</span>
+                                                <span>{new Date(post.data.publishDate).toLocaleDateString()}</span>
+                                            </div>
+                                        </div>
+                                        <p class='mt-1 text-sm text-descriptionTextLight dark:text-descriptionTextDark line-clamp-2'>
+                                            {post.data.description}
+                                        </p>
+                                    </a>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tagButtons = document.querySelectorAll('.tag-filter-btn');
+        const tagSections = document.querySelectorAll('.tag-section');
+        let selectedTag = null;
+
+        tagButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const tag = button.getAttribute('data-tag');
+
+                if (selectedTag === tag) {
+                    selectedTag = null;
+                    tagButtons.forEach(btn => {
+                        const span = btn.querySelector('span');
+                        if (span) {
+                            span.classList.remove('bg-phOrange', 'text-phWhite');
+                        }
+                    });
+                    tagSections.forEach(section => {
+                        section.style.opacity = '1';
+                        section.style.height = 'auto';
+                        section.style.overflow = 'visible';
+                        section.style.marginBottom = '1rem';
+                    });
+                } else {
+                    selectedTag = tag;
+                    tagButtons.forEach(btn => {
+                        const btnTag = btn.getAttribute('data-tag');
+                        const span = btn.querySelector('span');
+                        if (btnTag === tag) {
+                            if (span) span.classList.add('bg-phOrange', 'text-phWhite');
+                        } else {
+                            if (span) span.classList.remove('bg-phOrange', 'text-phWhite');
+                        }
+                    });
+                    tagSections.forEach(section => {
+                        const sectionTag = section.getAttribute('data-tag');
+                        if (sectionTag === tag) {
+                            section.style.opacity = '1';
+                            section.style.height = 'auto';
+                            section.style.overflow = 'visible';
+                            section.style.marginBottom = '1rem';
+                        } else {
+                            section.style.opacity = '0.3';
+                            section.style.height = '0';
+                            section.style.overflow = 'hidden';
+                            section.style.marginBottom = '0';
+                        }
+                    });
+                }
+            });
+        });
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .tag-section {
+                animation: fadeInUp 0.4s ease-out forwards;
+                opacity: 0;
+            }
+            #tags-cloud button {
+                animation: fadeInUp 0.3s ease-out forwards;
+                opacity: 0;
+            }
+        `;
+        document.head.appendChild(style);
+    });
+</script>

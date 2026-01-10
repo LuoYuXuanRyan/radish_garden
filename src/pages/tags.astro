@@ -1,0 +1,24 @@
+---
+import Tagspage from '../layout/tagspage.astro';
+import Navigation from '../layout/navigation.astro';
+import TagsFrame from '../components/tagsFrame.astro';
+import '../styles/global.css';
+---
+
+<html lang='en'>
+    <head>
+        <meta charset='utf-8' />
+        <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
+        <meta name='viewport' content='width=device-width' />
+        <meta name='generator' content={Astro.generator} />
+        <title>标签聚合 - Radish Garden</title>
+    </head>
+    <body>
+        <Tagspage>
+            <Navigation slot='header' />
+            <TagsFrame slot='main' client:load />
+        </Tagspage>
+    </body>
+</html>

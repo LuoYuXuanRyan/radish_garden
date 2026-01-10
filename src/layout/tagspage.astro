@@ -1,0 +1,134 @@
+---
+import config from '../../config';
+import Github from '../components/icons/github.astro';
+import Mail from '../components/icons/mail.astro';
+import FriendLink from '../components/friendLink.astro';
+import Post from '../components/icons/post.astro';
+import Tag from '../components/icons/tag.astro';
+import Avatar from '../components/avatar.astro';
+import GoBackToTop from '../components/goBackToTop.astro';
+import * as motion from 'motion/react-client';
+import { getCollection } from 'astro:content';
+import '../styles/global.css'
+const posts = await getCollection('posts');
+const totalPosts = posts.length;
+let tags = new Set();
+posts.map((post: any) => {
+    post.data.tags.map((tag: string) => {
+        tags.add(tag);
+    });
+});
+const totalTags = tags.size;
+---
+
+<body
+    class='bg-bodyLight dark:bg-bodyDark flex flex-col h-screen overflow-hidden'
+>
+    <slot name='header' />
+    <main class='flex flex-1 flex-col md:flex-row overflow-y-scroll' id="main-content-main">
+        <div
+            class='md:bg-bgLight md:dark:bg-bgDark flex flex-auto flex-col md:w-3/12 md:pl-16'
+        >
+            <motion.div
+                client:load
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                    duration: 0.4,
+                }}
+            >
+                <!-- foil -->
+                <div
+                    class='bg-foilLight dark:bg-foilDark flex flex-col items-center
+                                mt-2 md:ml-8 md:mr-4
+                                ml-4 mr-4
+                                pt-2
+                                rounded-2xl'
+                >
+                    <!-- avatar -->
+                    <Avatar
+                        src={config.avatar}
+                        alt='avatar'
+                    />
+                    <p
+                        class='text-profileTextLight dark:text-profileTextDark text-2xl mt-2 italic'
+                    >
+                        {config.author}
+                    </p>
+                    <p
+                        class='text-descriptionTextLight dark:text-descriptionTextDark text-bg italic'
+                    >
+                        ---- {config.author_description}
+                    </p>
+                    <div
+                        class='flex flex-row w-full justify-around mt-4 mb-4 text-2xl text-profileTextLight dark:text-profileTextDark'
+                    >
+                        <div class='flex flex-col items-center'>
+                            <div><Post class='w-9 h-9' /></div>
+                            <p class='text-3xl'>{totalPosts}</p>
+                        </div>
+                        <div class='flex flex-col items-center'>
+                            <div><Tag class='w-9 h-9' /></div>
+                            <p class='text-3xl'>{totalTags}</p>
+                        </div>
+                    </div>
+                    <div
+                        class='flex flex-row w-full mb-4 justify-around text-bg text-profileTextLight dark:text-profileTextDark'
+                    >
+                        <a
+                            href={config.github}
+                            class='inline-flex w-2/5 justify-center items-center hover:bg-bgLight dark:hover:bg-bgDark rounded-md'
+                        >
+                            <Github class='h-5 w-5 mr-1' />
+                            GitHub
+                        </a>
+                        <a
+                            href=`mailto:${config.email}?subject=${config.email_subject}`
+                            class='inline-flex w-2/5 justify-center items-center hover:bg-bgLight dark:hover:bg-bgDark rounded-md'
+                        >
+                            <Mail class='h-5 w-5 mr-1' />
+                            E-Mail
+                        </a>
+                    </div>
+                </div>
+                <FriendLink />
+            </motion.div>
+        </div>
+
+        <div
+            class='flex-auto md:w-8/12
+                md:ml-0.5 md:mr-0.5
+                ml-2 mr-2 md:overflow-y-scroll'
+            id="main-content-div"
+        >
+            <slot name='main' />
+        </div>
+        <div class='bg-bgLight dark:bg-bgDark flex-auto w-2/12 hidden md:block'>
+            <div class='flex justify-center'>
+                <p
+                    class='italic text-descriptionTextLight dark:text-descriptionTextDark'
+                >
+                    Posts grows here~
+                </p>
+            </div>
+        </div>
+        <GoBackToTop />
+    </main>
+</body>
+
+<script>
+    const setMainContentId = () => {
+        const mainElement = document.getElementById('main-content-main');
+        const specificDivElement = document.getElementById('main-content-div');
+
+        if (window.innerWidth >= 768) {
+            specificDivElement?.setAttribute('id', 'main-content');
+            mainElement?.removeAttribute('id');
+        } else {
+            mainElement?.setAttribute('id', 'main-content');
+            specificDivElement?.removeAttribute('id');
+        }
+    };
+    window.onload = setMainContentId;
+    window.addEventListener('resize', setMainContentId);
+</script>
