@@ -6,7 +6,7 @@ introText: '
 | 方法 | 做法 | 优点 | 缺点 |
 | 知识蒸馏 (Knowledge Distillation) | 将大型复杂模型的推理模式迁移到轻量化的模型中，主要通过教师-学生架构进行训练，通常通过软目标（soft targets）或监督微调（SFT）来实现。 | 推理速度与学生模型架构相同，有效压缩模型，适合资源受限的场景，如移动端部署等 | 蒸馏后的模型性能存在一定损失；需要依赖教师模型的输出进行训练 |'
 author: 'Ryan'
-tags: ['llm', 'algorithm']
+tags: ['LLM', 'Algorithms']
 slug: 'llm-reasoning-enhancement-methods'
 ---
 

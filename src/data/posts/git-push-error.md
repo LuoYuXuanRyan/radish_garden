@@ -7,7 +7,7 @@ introText: '最近在提交代码的时候遇到了以下错误
 send-pack: unexpected disconnect while reading sideband packet ... 致命错误：远端意外挂断了"，
 最后在 stack overflow 上找到了解决方案'
 author: 'Ryan'
-tags: ['git', 'http', 'error']
+tags: ['Git', 'HTTP', 'Error']
 slug: 'git-push-error'
 ---
 # git push 出错解决

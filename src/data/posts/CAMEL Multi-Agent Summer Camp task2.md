@@ -4,7 +4,7 @@ publishDate: '2025-08-20'
 description: 'CAMEL多智能体夏令营任务2笔记'
 introText: '本文记录了CAMEL多智能体夏令营任务2的关于 Agent 的一些学习笔记。本文根据官方文档内容整理。In a LLM-powered autonomous agent system, LLM functions as the agent’s brain, complemented by several key components: Planning, Memeory, Tool use.'
 author: 'Ryan'
-tags: ['Agent', 'CAMEL']
+tags: ['Multi-Agent', 'CAMEL']
 slug: 'camel-multi-agent-summer-camp-task2'
 ---
 

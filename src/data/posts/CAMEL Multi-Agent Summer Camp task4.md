@@ -4,7 +4,7 @@ publishDate: '2025-08-27'
 description: 'CAMEL多智能体夏令营任务4笔记'
 introText: '本文记录了CAMEL多智能体夏令营任务4的关于 Agent 的一些学习笔记。在CAMEL Multi-Agent Summer Camp Task3 中已经介绍了CAMEL的 workforce 用法，在本文我将用 workforce 构建一个辩论赛多智能体系统，然后利用几个常见的辩题进行测试。'
 author: 'Ryan'
-tags: ['MultiAgent', 'CAMEL']
+tags: ['Multi-Agent', 'CAMEL']
 slug: 'camel-multi-agent-summer-camp-task4'
 ---
 

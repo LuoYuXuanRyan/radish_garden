@@ -4,7 +4,7 @@ publishDate: '2025-08-24'
 description: 'CAMEL多智能体夏令营任务3笔记'
 introText: '本文记录了CAMEL多智能体夏令营任务3的关于 Agent 的一些学习笔记。本文根据官方文档内容整理。什么是 Multi-Agent？多智能体(Multi-Agent)由多个相互作用的智能体组成，每个智能体有自己的目标和策略。多智能体中的每个智能体之间可以通信、协作和竞争，以实现更复杂的行为和策略。'
 author: 'Ryan'
-tags: ['MultiAgent', 'CAMEL']
+tags: ['Multi-Agent', 'CAMEL']
 slug: 'camel-multi-agent-summer-camp-task3'
 ---
 

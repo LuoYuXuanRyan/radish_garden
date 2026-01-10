@@ -4,7 +4,7 @@ publishDate: '2025-5-11'
 description: '简要介绍大语言模型中的SFT、RLHF、DPO、PPO及GRPO算法'
 introText: '大语言模型（LLMs）的快速发展推动了自然语言处理领域的巨大进步，但如何将其输出与人类偏好对齐仍是核心挑战。监督微调（SFT）、人类反馈强化学习（RLHF）、直接偏好优化（DPO）、近端策略优化（PPO）及组相对策略优化（GRPO）等算法在此过程中扮演了关键角色。本文将从技术原理、应用场景及对比分析等角度对这些算法进行深入探讨。'
 author: 'Ryan'
-tags: ['LLMs', 'Algorithms', 'Reinforcement Learning', 'Supervised Learning']
+tags: ['LLM', 'Algorithms', 'Reinforcement Learning', 'Supervised Learning']
 slug: 'different-alogorithms-in-LLMs'
 ---
 # 浅析大语言模型中的SFT、RLHF、DPO、PPO及GRPO算法

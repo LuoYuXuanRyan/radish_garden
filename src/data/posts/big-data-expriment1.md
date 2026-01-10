@@ -4,7 +4,7 @@ publishDate: '2024-12-12'
 description: '大数据挖掘课程实验1'
 introText: '本文记录了大数据挖掘课程中实验1的步骤和遇到的问题。本文基于该[参考教程](https://dblab.xmu.edu.cn/blog/2441/)。'
 author: 'Ryan'
-tags: ['linux', 'hadoop']
+tags: ['Linux', 'Hadoop']
 slug: 'big-data-experiment1'
 ---
 

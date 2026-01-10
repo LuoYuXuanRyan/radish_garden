@@ -4,7 +4,7 @@ publishDate: '2025-3-13'
 description: 'A comprehension of RAG.'
 introText: 'RAG means Retrieval-Augmented Generation. It is a kind of technique that integrates information retrieval and natural language generation.'
 author: 'Ryan'
-tags: ['llm', 'RAG']
+tags: ['LLM', 'RAG']
 slug: 'understanding-RAG'
 ---
 

@@ -4,7 +4,7 @@ publishDate: '2025-09-01'
 description: 'CAMEL多智能体夏令营任务5/6笔记'
 introText: '本文记录了CAMEL多智能体夏令营任务5/6的关于 Agent 的一些学习笔记。在[这篇文章](https://luoyuxuanryan.pages.dev/posts/understanding-RAG.md)中主要讲了什么是RAG，以及RAG的几种范式，本文主要聚焦于如何使用CAMEL搭建一个RAG。'
 author: 'Ryan'
-tags: ['MultiAgent', 'CAMEL']
+tags: ['Multi-Agent', 'CAMEL']
 slug: 'camel-multi-agent-summer-camp-task56'
 ---
 

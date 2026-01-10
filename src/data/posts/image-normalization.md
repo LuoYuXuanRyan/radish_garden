@@ -4,7 +4,7 @@ publishDate: '2024-12-11'
 description: 'torchvision.transforms.Normalize 是一个进行图像标准化的类。'
 introText: ' torchvision.transforms.Normalize 是一个进行图像标准化的类。它的作用是对图像中的每个像素做标准化(normalization)处理,这通常可以提高模型的训练效果。'
 author: 'Ryan'
-tags: ['python', 'pytorch']
+tags: ['Python', 'PyTorch']
 slug: 'image-normalization'
 ---
 

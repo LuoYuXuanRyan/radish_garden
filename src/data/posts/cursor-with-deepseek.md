@@ -4,7 +4,7 @@ publishDate: '2025-2-2'
 description: '本文由deepseek-r1修改撰写。'
 introText: '最近朋友圈被 DeepSeek R1 刷屏了！这个号称「理科生の春天」的AI模型，居然和程序员最爱的智能编辑器 Cursor 官宣联动了！作为一个「能用AI写代码就绝不自己敲键盘」的懒癌晚期博主，今天就带大家玩转这个梦幻组合~'
 author: 'Ryan, deepseek-r1'
-tags: ['deepseek', 'cursor']
+tags: ['DeepSeek', 'Cursor']
 slug: 'cursor-with-deepseek'
 ---
 # 手把手教你用Cursor调教DeepSeek：让AI帮你写会跳舞的代码！
