@@ -1,4 +1,5 @@
 import * as motion from "motion/react-client"
+import { useMemo, memo } from "react";
 
 interface PostCardProps {
     title: string;
@@ -9,12 +10,18 @@ interface PostCardProps {
     pubDate: Date;
 }
 
-export default function PostCard({ title, tags, description, introText, author, pubDate }: PostCardProps) {
+function PostCardComponent({ title, tags, description, introText, author, pubDate }: PostCardProps) {
+    // 缓存日期格式化结果
+    const formattedDate = useMemo(() => {
+        return new Date(pubDate).toLocaleDateString();
+    }, [pubDate]);
+
     return (
         <motion.div
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{
                 duration: 0.4,
             }}
@@ -52,9 +59,12 @@ export default function PostCard({ title, tags, description, introText, author, 
                     className='flex justify-between text-sm text-fontLight dark:text-fontDark mt-auto'
                 >
                     <span>By {author}</span>
-                    <span>{new Date(pubDate).toLocaleDateString()}</span>
+                    <span>{formattedDate}</span>
                 </div>
             </div>
         </motion.div>
     )
 }
+
+// 使用 React.memo 优化组件，避免不必要的重新渲染
+export default memo(PostCardComponent);

@@ -1,30 +1,24 @@
 import PostCard from './postCard.tsx';
 import { Search } from './icons/search.tsx';
 import type { Post } from '../content.config.ts';
-import React, { useState, useEffect } from 'react';
-import debounce from 'lodash/debounce';
+import React, { useState, useMemo } from 'react';
 
 export default function PostWaterfallFrame({ posts }: { posts: Post[] }) {
     const [searchInput, setSearchInput] = useState<string>("");
-    const [filteredPosts, setFilteredPosts] = useState<Post[]>(posts);
     const [searchType, setSearchType] = useState<string>('title');
 
-    const debouncedHandleSearch = debounce(() => {
+    // 使用 useMemo 优化过滤后的文章列表
+    const filteredPosts = useMemo(() => {
         if (searchInput === "") {
-            setFilteredPosts(posts);
+            return posts;
         } else {
-            const filtered = posts.filter((post) =>
+            return posts.filter((post) =>
                 searchType === 'title'
                     ? post.data.title.toLowerCase().includes(searchInput.toLowerCase())
                     : post.data.tags.some(tag => tag.toLowerCase().includes(searchInput.toLowerCase()))
             );
-            setFilteredPosts(filtered);
         }
-    }, 300);
-
-    useEffect(() => {
-        debouncedHandleSearch();
-    }, [searchInput, searchType]);
+    }, [searchInput, searchType, posts]);
 
     return (
         <div>
@@ -32,7 +26,7 @@ export default function PostWaterfallFrame({ posts }: { posts: Post[] }) {
                 <button
                     className="pl-2 rounded-l-md bg-foilLight dark:bg-bgDark text-fontLight dark:text-fontDark"
                     id="searchButton"
-                    onClick={debouncedHandleSearch}
+                    type="button"
                 >
                     <Search />
                 </button>

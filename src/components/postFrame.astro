@@ -3,15 +3,15 @@ import PostWaterfallFrame from './PostWaterfallFrame.tsx';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('posts');
-    posts.sort(
-        (a, b) =>
-            new Date(b.data.publishDate).getTime() -
-            new Date(a.data.publishDate).getTime()
-    );
+const sortedPosts = posts.toSorted(
+    (a, b) =>
+        new Date(b.data.publishDate).getTime() -
+        new Date(a.data.publishDate).getTime()
+);
 ---
 
 <suspense fallback="Loading...">
-    <PostWaterfallFrame posts={posts} client:load />
+    <PostWaterfallFrame posts={sortedPosts} client:load />
 </suspense>
     
 
