@@ -5,6 +5,7 @@ import { getEntry, render } from 'astro:content';
 import AboutMe from '../components/aboutMe.astro'
 import config from '../../config';
 import '../styles/global.css'
+import { fadeInSlide } from '../config/animations';
 const entry = await getEntry('about', 'aboutme');
 const { Content, headings } = await render(entry!);
 ---
@@ -26,11 +27,7 @@ const { Content, headings } = await render(entry!);
         >
             <motion.div
                 client:load
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{
-                    duration: 0.4,
-                }}
+                {...fadeInSlide}
             >
                 <div
                     class='flex flex-col md:flex-row md:justify-around items-center'

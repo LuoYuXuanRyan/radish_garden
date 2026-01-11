@@ -1,5 +1,7 @@
 import * as motion from "motion/react-client"
 import { useMemo, memo } from "react";
+import { fadeInSlideViewport } from "../config/animations";
+import { formatDate } from "../utils/date";
 
 interface PostCardProps {
     title: string;
@@ -13,18 +15,13 @@ interface PostCardProps {
 function PostCardComponent({ title, tags, description, introText, author, pubDate }: PostCardProps) {
     // 缓存日期格式化结果
     const formattedDate = useMemo(() => {
-        return new Date(pubDate).toLocaleDateString();
+        return formatDate(pubDate);
     }, [pubDate]);
 
     return (
         <motion.div
             whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{
-                duration: 0.4,
-            }}
+            {...fadeInSlideViewport}
         >
             <div
                 className={`flex flex-col w-full rounded-2xl pt-4 pb-4 pl-10 pr-10 min-h-72 mb-2

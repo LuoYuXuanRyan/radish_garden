@@ -10,6 +10,7 @@ import GoBackToTop from '../components/goBackToTop.astro';
 import * as motion from 'motion/react-client';
 import { getCollection } from 'astro:content';
 import '../styles/global.css'
+import { fadeInSlide } from '../config/animations';
 const posts = await getCollection('posts');
 const totalPosts = posts.length;
 let tags = new Set();
@@ -31,11 +32,7 @@ const totalTags = tags.size;
         >
             <motion.div
                 client:load
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{
-                    duration: 0.4,
-                }}
+                {...fadeInSlide}
             >
                 <!-- foil -->
                 <div
@@ -83,7 +80,7 @@ const totalTags = tags.size;
                             GitHub
                         </a>
                         <a
-                            href=`mailto:${config.email}?subject=${config.email_subject}`
+                            href={config.emailLink}
                             class='inline-flex w-2/5 justify-center items-center hover:bg-bgLight dark:hover:bg-bgDark rounded-md'
                         >
                             <Mail class='h-5 w-5 mr-1' />
@@ -108,7 +105,7 @@ const totalTags = tags.size;
                 <p
                     class='italic text-descriptionTextLight dark:text-descriptionTextDark'
                 >
-                    Posts grows here~
+                    {config.site_tagline}
                 </p>
             </div>
         </div>

@@ -4,9 +4,8 @@ import * as motion from 'motion/react-client';
 export interface Props {
     src: string;
     alt?: string;
-    size?: { base: number; md: number };
 }
-const { src, alt = 'avatar', size = { base: 36, md: 40 } } = Astro.props;
+const { src, alt = 'avatar' } = Astro.props;
 ---
 
 <motion.div client:load whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>

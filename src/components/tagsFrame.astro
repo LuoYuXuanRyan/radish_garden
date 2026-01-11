@@ -1,5 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { sortPostsByDate, formatDate } from '../utils/date';
 
 // 获取所有文章
 const posts = await getCollection('posts');
@@ -26,9 +27,7 @@ const tagGroups: TagGroup[] = (() => {
     return Array.from(tagMap.entries())
         .map(([tag, posts]) => ({
             tag,
-            posts: posts.sort((a, b) =>
-                new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
-            ),
+            posts: sortPostsByDate(posts),
             count: posts.length,
         }))
         .sort((a, b) => b.count - a.count);
@@ -114,7 +113,7 @@ const totalTags = tagGroups.length;
                                             </h3>
                                             <div class='flex items-center gap-3 text-sm text-descriptionTextLight dark:text-descriptionTextDark'>
                                                 <span>{post.data.author}</span>
-                                                <span>{new Date(post.data.publishDate).toLocaleDateString()}</span>
+                                                <span>{formatDate(post.data.publishDate)}</span>
                                             </div>
                                         </div>
                                         <p class='mt-1 text-sm text-descriptionTextLight dark:text-descriptionTextDark line-clamp-2'>

@@ -3,6 +3,8 @@ import * as motion from 'motion/react-client';
 import FriendLink from '../components/friendLink.astro';
 import '../styles/mathjax.css';
 import '../styles/global.css';
+import { fadeInSlide } from '../config/animations';
+import config from '../../config';
 ---
 
 <div
@@ -15,11 +17,7 @@ import '../styles/global.css';
         >
             <motion.div
                 client:load
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{
-                    duration: 0.4,
-                }}
+                {...fadeInSlide}
             >
                 <div
                     class='bg-foilLight dark:bg-foilDark flex flex-col items-center mt-2 ml-8 mr-4 rounded-2xl pt-4 pb-4'
@@ -36,11 +34,7 @@ import '../styles/global.css';
         >
             <motion.div
                 client:load
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{
-                    duration: 0.4,
-                }}
+                {...fadeInSlide}
             >
                 <slot name='article' />
             </motion.div>
@@ -51,7 +45,7 @@ import '../styles/global.css';
             <p
                 class='italic text-descriptionTextLight dark:text-descriptionTextDark'
             >
-                Posts grows here~
+                {config.site_tagline}
             </p>
         </div>
     </main>
