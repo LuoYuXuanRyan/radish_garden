@@ -1,10 +1,11 @@
 ---
 import RssIcon from './icons/rss.astro';
 import { getCollection } from 'astro:content';
-import { sortPostsByDate } from '../utils/date';
+import { sortPostsByDate, formatDate } from '../utils/date';
 
 const posts = await getCollection('posts');
 const sortedPosts = sortPostsByDate(posts);
+const rssUrl = new URL('/rss.xml', Astro.url).href;
 ---
 
 <div class="px-4 pt-4">
@@ -34,7 +35,7 @@ const sortedPosts = sortPostsByDate(posts);
                 <h3 class="font-semibold mb-2 text-phOrange">RSS 订阅地址</h3>
                 <div class="flex items-center gap-2">
                     <code class="flex-1 bg-foilLight dark:bg-foilDark px-3 py-2 rounded text-sm break-all">
-                        /rss.xml
+                        {rssUrl}
                     </code>
                     <a
                         href="/rss.xml"
@@ -69,7 +70,7 @@ const sortedPosts = sortPostsByDate(posts);
                         >
                             <div class="font-semibold text-sm">{post.data.title}</div>
                             <div class="text-xs text-descriptionTextLight dark:text-descriptionTextDark">
-                                {post.data.author} · {post.data.publishDate.toLocaleDateString()}
+                                {post.data.author} · {formatDate(post.data.publishDate)}
                             </div>
                         </a>
                     ))}
