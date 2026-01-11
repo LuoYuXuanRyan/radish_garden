@@ -1,7 +1,7 @@
 import PostCard from './postCard.tsx';
 import { Search } from './icons/search.tsx';
 import type { Post } from '../content.config.ts';
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 
 export default function PostWaterfallFrame({ posts }: { posts: Post[] }) {
     const [searchInput, setSearchInput] = useState<string>("");

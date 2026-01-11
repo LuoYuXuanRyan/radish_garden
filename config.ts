@@ -8,6 +8,7 @@ interface Config {
     github: string;
     email: string;
     email_subject: string;
+    emailLink: string;
     friendlink: { [key: string]: string };
 }
 
@@ -21,16 +22,12 @@ const config: Config = {
     github: 'https://github.com/LuoYuXuanRyan',
     email: 'ryanluo12138@126.com',
     email_subject: 'From%20Astro%20Blog%20',
+    get emailLink(): string {
+        return `mailto:${this.email}?subject=${this.email_subject}`;
+    },
     friendlink: {
         "BlockLune's Blog": 'https://blocklune.cc',
     },
 };
-
-// Add computed property for email link
-Object.defineProperty(config, 'emailLink', {
-    get() {
-        return `mailto:${this.email}?subject=${this.email_subject}`;
-    }
-});
 
 export default config;

@@ -108,7 +108,8 @@ import '../styles/global.css'
 
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        if (!menuButton?.contains(e.target) && !mobileMenu?.contains(e.target)) {
+        const target = e.target as Node;
+        if (menuButton && mobileMenu && !menuButton.contains(target) && !mobileMenu.contains(target)) {
             closeMenu();
         }
     });
