@@ -1,0 +1,80 @@
+---
+import RssIcon from './icons/rss.astro';
+import { getCollection } from 'astro:content';
+import { sortPostsByDate } from '../utils/date';
+
+const posts = await getCollection('posts');
+const sortedPosts = sortPostsByDate(posts);
+---
+
+<div class="px-4 pt-4">
+    <h1 class="text-3xl font-bold text-fontLight dark:text-fontDark mb-6">
+        RSS 订阅
+    </h1>
+
+    <div class="rounded-2xl pt-6 pb-6 pl-10 pr-10
+        bg-foilLight dark:bg-bgDark
+        text-fontLight dark:text-fontDark
+        hover:shadow-lg shadow-bgDark dark:shadow-bgLight
+        border-l-4 border-phOrange
+        transition-all duration-300">
+
+        <div class="flex items-center gap-4 mb-6">
+            <RssIcon class="h-12 w-12 text-phOrange" />
+            <div>
+                <h2 class="text-2xl font-bold mb-2">订阅我们的 RSS 源</h2>
+                <p class="text-descriptionTextLight dark:text-descriptionTextDark">
+                    通过 RSS 阅读器获取最新文章更新
+                </p>
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <div class="bg-bgLight dark:bg-bgDark rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                <h3 class="font-semibold mb-2 text-phOrange">RSS 订阅地址</h3>
+                <div class="flex items-center gap-2">
+                    <code class="flex-1 bg-foilLight dark:bg-foilDark px-3 py-2 rounded text-sm break-all">
+                        /rss.xml
+                    </code>
+                    <a
+                        href="/rss.xml"
+                        class="px-4 py-2 bg-phOrange text-phWhite dark:text-phBlack rounded-lg hover:opacity-90 transition-opacity font-semibold"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        订阅
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-bgLight dark:bg-bgDark rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                <h3 class="font-semibold mb-2 text-phOrange">如何使用 RSS</h3>
+                <ul class="text-sm text-descriptionTextLight dark:text-descriptionTextDark space-y-2">
+                    <li>• 复制上方订阅地址</li>
+                    <li>• 在你的 RSS 阅读器中添加此订阅源</li>
+                    <li>• 点击"订阅"按钮可直接访问 RSS 源</li>
+                </ul>
+            </div>
+
+            <div class="bg-bgLight dark:bg-bgDark rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                <h3 class="font-semibold mb-2 text-phOrange">最新文章</h3>
+                <p class="text-sm text-descriptionTextLight dark:text-descriptionTextDark mb-2">
+                    共 {posts.length} 篇文章
+                </p>
+                <div class="space-y-2">
+                    {sortedPosts.slice(0, 5).map((post) => (
+                        <a
+                            href={`/posts/${post.id}`}
+                            class="block p-2 rounded hover:bg-foilLight dark:hover:bg-foilDark transition-colors"
+                        >
+                            <div class="font-semibold text-sm">{post.data.title}</div>
+                            <div class="text-xs text-descriptionTextLight dark:text-descriptionTextDark">
+                                {post.data.author} · {post.data.publishDate.toLocaleDateString()}
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
