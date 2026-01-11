@@ -27,7 +27,8 @@ function PostCardComponent({ title, tags, description, introText, author, pubDat
                 className={`flex flex-col w-full rounded-2xl pt-4 pb-4 pl-10 pr-10 min-h-72 mb-2
                         dark:ring-ringDark hover:opacity-90 transition-all duration-300
                         bg-foilLight dark:bg-bgDark text-fontLight dark:text-fontDark
-                        hover:shadow-lg shadow-bgDark dark:shadow-bgLight`}
+                        hover:shadow-lg shadow-bgDark dark:shadow-bgLight
+                        border-l-4 border-phOrange`}
             >
                 <div className='flex flex-col md:flex-row justify-between'>
                     <h1 className='text-2xl font-bold md:max-w-lg'>{title}</h1>
