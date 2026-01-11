@@ -1,8 +1,7 @@
 import type { CollectionEntry } from 'astro:content';
 import { formatDate } from '../utils/date';
 import React, { useState } from 'react';
-import * as motion from 'motion/react-client';
-import { AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from "motion/react";
 import { fadeInSlideViewport, fadeInUpViewport } from '../config/animations';
 
 interface TagGroup {
