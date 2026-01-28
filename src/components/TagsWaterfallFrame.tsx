@@ -70,16 +70,16 @@ export default function TagsWaterfallFrame({ tagGroups, totalPosts, totalTags }:
             </div>
 
             {/* Tags List */}
-            <div className="p-4" id="tags-list">
+            <div className="p-4 overflow-hidden" id="tags-list">
                 <AnimatePresence mode="popLayout">
                     {tagGroups.map((group, index) => (
                         isSectionVisible(group.tag) && (
                             <motion.div
                                 key={selectedTag ? `${selectedTag}-${group.tag}` : group.tag}
                                 className="tag-section mb-4"
-                                initial={{ opacity: 0, x: -50 }}
+                                initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: 50 }}
+                                exit={{ opacity: 0, x: 20 }}
                                 transition={{
                                     duration: 0.3,
                                     delay: isInitialLoad ? index * 0.05 : 0
